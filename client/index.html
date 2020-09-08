@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- form login -->
+    <div class="border-solid rounded border border-dark d-none">
+        <form action="" class="flex h80">
+           <input type="text" class="mb-4" id="email-input" placeholder="email">
+           <input type="password" class="mb-4" id="password-input" placeholder="password">
+           <button class="mb-4 btn btn-success">Register</button>
+           <button class="mb-4 btn btn-primary">Login</button>
+           <img class="logo-login" src="./img/caneband-logo.png" alt="" width="75px">
+        </form>
+    </div>
+    <div class="main-page">
+        <div class="header">
+            <a href="#">(Back to jobs)</a>
+            <h2>Manager</h2>
+            <p>Wahyu Setiawan - Marketing Department</p>
+        </div>
+        <div class="row flex-table">
+            <div class="col-sm-2">
+                <!-- navbar -->
+                <div class="navbar bg-cream">
+                    <div class="upper-logo">
+                        <img class="logo-navbar" src="./img/caneband-logo.png" alt="" width="75px">
+                        <img class="logo-navbar" src="./icons/png/002-home.png" alt="" width="20px">
+                        <img class="logo-navbar" src="./icons/png/003-affiliate-marketing.png" alt="" width="20px">
+                        <img class="logo-navbar" src="./icons/png/005-envelope.png" alt="" width="20px">
+                        <img class="logo-navbar" src="./icons/png/004-magnifying-glass.png" alt="" width="20px">
+                    </div>
+                    <div class="lower-logo">
+                        <img src="./icons/png/logout.png" alt="" width="20px">
+                    </div>
+                </div>
+                <!-- content -->
+            </div>
+            <div class="col-sm-2 bg-cream pl-5 py-3 border border-dark">
+                <table border="1">
+                    <tr>
+                        <th>To do list</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <dl>
+                            <input type="text" name="" id="" placeholder="add Title">
+                                <dt>Title 1</dt>
+                                <dd>- todo-list 1 <button type="button" class="btn btn-primary">Process</button></dd>
+                                <dd>- todo-list 2 <button type="button" class="btn btn-primary">Process</button></dd>
+                                <dd>- todo-list 3 <button type="button" class="btn btn-primary">Process</button></dd>
+                                <dd>- todo-list 4 <button type="button" class="btn btn-primary">Process</button></dd>
+                            <input type="text" name="" id="" placeholder="input new todo">
+
+                                <dt>Title 2</dt>
+                                <dd>- todo-list 1 <button type="button" class="btn btn-primary">Process</button></dd>
+                                <dd>- todo-list 2 <button type="button" class="btn btn-primary">Process</button></dd>
+                                <dd>- todo-list 3 <button type="button" class="btn btn-primary">Porcess</button></dd>
+                                <dd>- todo-list 4 <button type="button" class="btn btn-primary">Process</button></dd>
+                            </dl>
+                            <input type="text" name="" id="" placeholder="input new todo">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-3 bg-cream p-5 border border-dark">
+                <table border="1">
+                    <tr>
+                        <th>On Going</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <dl>
+                            
+                                <dt>Title 1</dt>
+                                <dd>- todo-list 1 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                                <dd>- todo-list 2 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                                <dd>- todo-list 4
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                            
+                                <dt>Title 2</dt>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-warning">Need Assistant</button>
+                                </dd>
+                            </dl>
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-3 bg-cream pl-5 py-3 border border-dark">
+                <table border="1">
+                    <tr>
+                        <th>Need Assistant</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <dl>
+                            
+                                <dt>Title 1</dt>
+                                <dd>- todo-list 1 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                                <dd>- todo-list 2 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                                <dd>- todo-list 4
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                                <dt>Title 2</dt>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                                <dd>- todo-list 3 
+                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button type="button" class="btn btn-danger">Cancelled</button>
+                                </dd>
+                            </dl>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-2 bg-cream pl-5 py-3 border border-dark">
+                <table border="1">
+                    <tr>
+                        <th>To do list</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <dl>
+                                <dt>Title 1</dt>
+                                <dd>- todo-list 1 
+                                <dd>- todo-list 2 
+                                <dd>- todo-list 3
+                                <dd>- todo-list 4
+                                <dt>Title 2</dt>
+                                <dd>- todo-list 1
+                            </dl>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
