@@ -1,0 +1,14 @@
+[
+    {
+        "stat_name" : "To Do"
+    },
+    {
+        "stat_name" : "On Process"
+    },
+    {
+        "stat_name" : "Review"
+    },
+    {
+        "stat_name" : "Done"
+    }
+]
