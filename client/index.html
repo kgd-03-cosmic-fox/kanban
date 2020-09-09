@@ -9,21 +9,33 @@
 </head>
 <body>
     <!-- form login -->
-    <div class="border-solid rounded border border-dark d-none">
-        <form action="" class="flex h80">
-           <input type="text" class="mb-4" id="email-input" placeholder="email">
-           <input type="password" class="mb-4" id="password-input" placeholder="password">
-           <button class="mb-4 btn btn-success">Register</button>
-           <button class="mb-4 btn btn-primary">Login</button>
+<div id="app">
+    <div class="border-solid rounded border border-dark" v-if="currentPage === 'login-page' ">
+        <form @submit.prevent="login" class="flex h80">
+           <input 
+           v-model="user.email" 
+           type="text" 
+           class="mb-4" 
+           id="email-input" 
+           placeholder="email"
+           >
+           <input 
+           v-model="user.password" 
+           type="password" 
+           class="mb-4" 
+           id="password-input" 
+           placeholder="password"
+           >
+            <button class="mb-4 btn btn-primary">Login</button>
+            <button class="mb-4 btn btn-success">Register</button>
            <img class="logo-login" src="./img/caneband-logo.png" alt="" width="75px">
         </form>
     </div>
-    <div class="main-page" id="app">
-        <div class="header">
+    <div class="main-page" v-else-if="currentPage === 'main-page' ">
+        <div class="header"></div>
             <a href="#">(Back to jobs)</a>
             <h2>Manager</h2>
             <p>Wahyu Setiawan - Marketing Department</p>
-        </div>
         <div class="row flex-table">
             <div class="col-sm-2">
                 <!-- navbar -->
@@ -33,10 +45,14 @@
                         <img class="logo-navbar" src="./icons/png/002-home.png" alt="" width="20px">
                         <img class="logo-navbar" src="./icons/png/003-affiliate-marketing.png" alt="" width="20px">
                         <img class="logo-navbar" src="./icons/png/005-envelope.png" alt="" width="20px">
+                        <a href="">
                         <img class="logo-navbar" src="./icons/png/004-magnifying-glass.png" alt="" width="20px">
+                        </a>
                     </div>
                     <div class="lower-logo">
+                        <a href="#" @click="logout">
                         <img src="./icons/png/logout.png" alt="" width="20px">
+                        </a>
                     </div>
                 </div>
                 <!-- content -->
@@ -74,7 +90,7 @@
                             
                                 <dt>Title 1</dt>
                                 <dd>- todo-list 1 
-                                    <button type="button" class="btn btn-success">Done</button> ||
+                                    <button @click="fetchTodos" type="button" class="btn btn-success">Done</button> ||
                                     <button type="button" class="btn btn-warning">Need Assistant</button>
                                 </dd>
                                 <dd>- todo-list 2 
@@ -199,9 +215,9 @@
             </div>
         </div>
     </div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="main.js">
-        
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
