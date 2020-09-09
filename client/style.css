@@ -276,7 +276,7 @@ input[type=password]{
     
 }
 
-#text-logout , #go-to-add-task{
+#text-logout , #go-to-add-task , #go-to-list-task{
     margin-top: 50px;
 }
 
