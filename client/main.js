@@ -2,7 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
       message: 'Hello Vue!',
-      currentPage : 'home-page',
+      currentPage : 'login',
       homePage : 'list',
       taskToDo : [],
       taskOnProcess : [],

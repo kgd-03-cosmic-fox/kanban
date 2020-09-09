@@ -13,12 +13,56 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      User.belongsToMany(models.Org , {through : models.OrgMember})
+      User.hasMany(models.task)
+
     }
   };
   User.init({
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
+    username: {
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notNull : {
+          args : true,
+          msg : 'username Tidak boleh Null'
+        },
+        notEmpty : {
+          args : true,
+          msg : 'username Tidak boleh Kosong'
+        }
+      } 
+    },
+    email: {
+      type : DataTypes.STRING,
+      unique : true,
+      allowNull: false,
+      validate : {
+        isEmail : {
+          args : true,
+          msg : 'Must be Email value'
+        },
+        notEmpty : {
+          args : true,
+          msg : 'Email tidak boleh kosong'
+        }
+      }  
+    },
+    password: {
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notNull : {
+          args : true,
+          msg : 'Password tidak boleh Null'
+        },
+        notEmpty : {
+          args : true,
+          msg : 'Password tidak boleh kosong'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'User',

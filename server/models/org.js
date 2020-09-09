@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Org.hasMany(models.Task)
+      Org.belongsToMany(models.User , {through : models.OrgMember} )
+      
     }
   };
   Org.init({
