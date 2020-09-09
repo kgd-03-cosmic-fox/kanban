@@ -12,16 +12,17 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
+        unique:true,
         type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
       },
-      organisation: {
+      jobDesk: {
         type: Sequelize.STRING
       },
-      position: {
-        type: Sequelize.STRING
+      OrganisationId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

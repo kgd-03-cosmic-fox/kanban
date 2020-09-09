@@ -11,15 +11,43 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Task.belongsTo(models.Organisation)
     }
   };
   Task.init({
-    title: DataTypes.STRING,
-    job_description: DataTypes.TEXT,
-    requirements: DataTypes.TEXT,
-    due_date: DataTypes.DATE,
-    status: DataTypes.STRING
-  }, {
+    title: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notNull: {
+          args: true,
+          msg: "title Cannot be empty"
+        }
+      }
+    },
+    description: {
+      type:DataTypes.TEXT,
+      allowNull:false,
+      validate:{
+        notNull: {
+          args: true,
+          msg: "description Cannot be empty"
+        }
+      }
+    },
+    OrganisationId: DataTypes.INTEGER,
+    category: DataTypes.STRING,
+    due_date: {
+      type: DataTypes.DATE,
+      validate:{
+        isValidDate(due_date){
+          if(new Date(due_date) < new Date(Date.now()).setHours(0, 0, 0, 0)){
+            throw new Error('Invalid Date');
+          }
+        }
+    }
+  }
+}, {
     sequelize,
     modelName: 'Task',
   });

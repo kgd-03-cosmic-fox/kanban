@@ -11,17 +11,17 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      job_description: {
+      description: {
         type: Sequelize.TEXT
       },
-      requirements: {
-        type: Sequelize.TEXT
+      OrganisationId: {
+        type: Sequelize.INTEGER
+      },
+      category: {
+        type: Sequelize.STRING
       },
       due_date: {
         type: Sequelize.DATE
-      },
-      status: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
