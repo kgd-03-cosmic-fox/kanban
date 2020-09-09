@@ -12,7 +12,7 @@
   <body>
     <div id="app">
       <!-- login page -->
-      <section id="login-page" v-if="currentPage === 'login-page'">
+      <section id="login-page" v-else-if="currentPage === 'login-page'">
         <div class="bg-video">
           <video class="bg-video-content" autoplay muted loop>
             <source src="img/video.mp4" type="video/mp4">
@@ -36,7 +36,7 @@
                     <input id="password" class="uk-input" type="password" placeholder="password here">
                   </div>
                 </div>
-                <button type="submit" class="login-btn uk-button uk-button-primary" @click="changePage('home')">Login</button>
+                <button type="submit" class="login-btn uk-button uk-button-primary" @click="changePage('home-page')">Login</button>
                 <div class="uk-margin">
                   <div class="uk-inline">
                     <span class="uk-form-icon uk-form-icon-flip"></span>
@@ -47,7 +47,7 @@
             </div>
           </section>
         <!-- home page -->
-      <section id="home-page" v-else-if="currentPage === 'home-page'">
+      <section id="home-page" v-if="currentPage === 'home-page'">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary mb-2">
               <a class="navbar-brand font-white" href="#">Navbar</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
