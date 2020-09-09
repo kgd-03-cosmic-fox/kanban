@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coba2 Vue</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for= "todo in todos" >{{todo}}</li>
+        </ul>
+        <form v-on:submit.prevent="addTodo">
+            <button type="submit">Pincet Pincet</button>
+            <input type="text" placeholder="title" v-model="newTitle">
+        </form>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue ({
+            el:"#app",
+            data:{
+                newTitle:"",
+                message:"Hello Vue",
+                todos: []
+            },
+            methods:{
+                addTodo(){
+                    this.todos.push(this.newTitle)
+                    this.newTitle=""
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -18,7 +18,7 @@
            <img class="logo-login" src="./img/caneband-logo.png" alt="" width="75px">
         </form>
     </div>
-    <div class="main-page">
+    <div class="main-page" id="app">
         <div class="header">
             <a href="#">(Back to jobs)</a>
             <h2>Manager</h2>
@@ -48,22 +48,17 @@
                     </tr>
                     <tr>
                         <td>
-                            <dl>
-                            <input type="text" name="" id="" placeholder="add Title">
-                                <dt>Title 1</dt>
-                                <dd>- todo-list 1 <button type="button" class="btn btn-primary">Process</button></dd>
-                                <dd>- todo-list 2 <button type="button" class="btn btn-primary">Process</button></dd>
-                                <dd>- todo-list 3 <button type="button" class="btn btn-primary">Process</button></dd>
-                                <dd>- todo-list 4 <button type="button" class="btn btn-primary">Process</button></dd>
-                            <input type="text" name="" id="" placeholder="input new todo">
-
-                                <dt>Title 2</dt>
-                                <dd>- todo-list 1 <button type="button" class="btn btn-primary">Process</button></dd>
-                                <dd>- todo-list 2 <button type="button" class="btn btn-primary">Process</button></dd>
-                                <dd>- todo-list 3 <button type="button" class="btn btn-primary">Porcess</button></dd>
-                                <dd>- todo-list 4 <button type="button" class="btn btn-primary">Process</button></dd>
-                            </dl>
-                            <input type="text" name="" id="" placeholder="input new todo">
+                            <form v-on:submit.prevent="addTodo">
+                                <input type="text" name="" id="" placeholder="add Title" v-model="newTodo">
+                                <button>add</button>
+                                    <dl>
+                                        <dd v-for="todo in todoList" @click="processTodo">-{{todo}} 
+                                            <button type="button" class="btn btn-primary">
+                                                Process
+                                            </button>
+                                        </dd>
+                                    </dl>
+                            </form>
                         </td>
                     </tr>
                 </table>
@@ -166,10 +161,10 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-sm-2 bg-cream pl-5 py-3 border border-dark">
+            <div class="col-sm-1 bg-cream pl-5 py-3 border border-dark">
                 <table border="1">
                     <tr>
-                        <th>To do list</th>
+                        <th>Finished</th>
                     </tr>
                     <tr>
                         <td>
@@ -179,8 +174,24 @@
                                 <dd>- todo-list 2 
                                 <dd>- todo-list 3
                                 <dd>- todo-list 4
-                                <dt>Title 2</dt>
-                                <dd>- todo-list 1
+                            </dl>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-1 bg-cream pl-5 py-3 border border-dark">
+                <table border="1">
+                    <tr>
+                        <th>Cancelled</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <dl>
+                                <dt>Title 1</dt>
+                                <dd>- todo-list 1 
+                                <dd>- todo-list 2 
+                                <dd>- todo-list 3
+                                <dd>- todo-list 4
                             </dl>
                         </td>
                     </tr>
@@ -188,5 +199,9 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js">
+        
+    </script>
 </body>
 </html>
