@@ -22,7 +22,7 @@ body {
 }
 
 .items{
-    display: none;
+
     background-color: rgba(0,0,0,60%);
     margin: 5px auto;
     width: 75%;
@@ -46,8 +46,7 @@ body {
     margin: 5px;
     overflow: scroll;
     min-height: 300px;
-    max-height: 1100px;
-    height: 1053px;
+    max-height: 800px;
     min-width: 100px;
     display: flex;
     flex-direction: column;
@@ -62,9 +61,9 @@ body {
 }
 
 .card {
+
     background-color: rgba(0,0,0,75%);
     color: white;
-
     margin: 5px;
     padding: 5px;
     width: 300px;
@@ -85,7 +84,7 @@ body {
 }
 
 #task-list-page {
-    display: none;
+    /* display: none; */
 }
 
 #home-page {
@@ -237,9 +236,11 @@ input[type=password]{
 }
 
 .task-status-title{
+
     background-color: rgba(0 ,0 ,0 ,75%);
     width: 100%;
     text-align: center ;
+    
 }
 
 #add-task{
@@ -275,8 +276,8 @@ input[type=password]{
     
 }
 
-#text-logout {
-    margin-top: 150px;
+#text-logout , #go-to-add-task{
+    margin-top: 50px;
 }
 
 #add-title{
@@ -312,3 +313,11 @@ input[type=date]{
     background-color: rgba(0,0,0,50%)
 }
 
+.no-display {
+    color: rgba(0 ,0 ,0 ,0%);
+}
+
+#side-bar {
+    height: 100vh;
+    background-color: rgba(255,255,255,50%);
+}

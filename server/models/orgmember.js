@@ -22,9 +22,11 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'OrgMember',
     hooks:{
       beforeCreate(instance , options){
+        
         if(instance.OrgId == 1){
           instance.FlagOwner = 0
         }
+        
       }
     }
   });
