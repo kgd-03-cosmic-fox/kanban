@@ -3,10 +3,11 @@ const router = express.Router()
 
 const OrganizationController = require('../controllers/organization-controller.js')
 
-router.get('/myorganizations' , OrganizationController.myList)
-router.get('/members' , OrganizationController.member)
-// router.post('/members' , OrganizationController.addMember)
-// router.delete('/members/:id' , OrganizationController.deleteMember)
+router.post('/' , OrganizationController.createNewOrg)
+router.get('/myorganizations/:idOrg' , OrganizationController.myOrg)
+router.get('/members' , OrganizationController.orgMember)
+router.post('/members/:idOrg' , OrganizationController.addMember)
+router.delete('/members/:idOrg' , OrganizationController.deleteMember)
 
 
 module.exports = router

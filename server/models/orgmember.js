@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      OrgMember.belongsTo(models.User)
+      OrgMember.belongsTo(models.Org)
+      
     }
   };
   OrgMember.init({

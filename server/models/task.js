@@ -85,6 +85,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Task',
+    hooks : {
+      beforeCreate (instance , options){
+
+        instance.StatId = 1
+        
+      }
+    }
   });
   return Task;
 };

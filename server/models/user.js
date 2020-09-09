@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
       User.belongsToMany(models.Org , {through : models.OrgMember})
       User.hasMany(models.task)
-
+      User.hasMany(models.OrgMember)
     }
   };
   User.init({

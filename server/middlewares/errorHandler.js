@@ -1,4 +1,3 @@
-
 function errorHandler (err , req , res , next){
 
     console.log(err)
@@ -13,6 +12,5 @@ function errorHandler (err , req , res , next){
     res.status(status).json({message})
 
 }
-
 
 module.exports = errorHandler
