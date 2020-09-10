@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: { args: true, msg: "Email is already registered." },
       validate: {
         isEmail: { args: true, msg: "Email must be in email format." },
         notNull: { args: true, msg: "Email cannot be empty." }
@@ -48,8 +49,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.addHook('beforeCreate', (data, options) => {
-    const salt = bcrypt.genSalt(10);
-    data.password = bcrypt.hashSync(user.password, salt);
+    const salt = bcrypt.genSaltSync(10);
+    data.password = bcrypt.hashSync(data.password, salt);
   })
 
   return User;

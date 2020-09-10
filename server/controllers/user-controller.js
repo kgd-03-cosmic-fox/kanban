@@ -1,5 +1,6 @@
 const { User, Task } = require('../models/index.js');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 class UserController {
   static registerNewUserPostHandler(req, res, next) {
@@ -13,25 +14,27 @@ class UserController {
         res.status(201).json({ successmsg: "RegisSuccess" })
       })
       .catch((err) => {
-        res.status(500).json({ msg: "Internal Server Error" })
-        //catch will be refactored to middleware later
+        next(err);
       })
   }
 
   static loginUserPostHandler(req, res, next) {
     User.findOne({ where: { email: req.body.email } })
       .then((data) => {
-        let payload = {
-          id: data.id,
-          organization: data.organization,
-          name: data.name
+        if (bcrypt.compareSync(req.body.password, data.password)) {
+          let payload = {
+            id: data.id,
+            organization: data.organization,
+            name: data.name
+          }
+          const token = jwt.sign(payload, process.env.JWT_SECRET);
+          res.status(200).json({ access_token: token })
+        } else {
+          next({ name: `loginFail`, msg: "ID/Password is wrong." });
         }
-        const token = jwt.sign(payload, process.env.JWT_SECRET);
-        res.status(200).json({ token: token })
-
       })
       .catch((err) => {
-        res.status(401).json({ msg: "ID/Password is wrong." })
+        next(err);
       })
   }
 }
