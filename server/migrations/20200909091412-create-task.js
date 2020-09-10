@@ -21,8 +21,8 @@ module.exports = {
       due_date: {
         type: Sequelize.DATE
       },
-      OrganizationName: {
-        type: Sequelize.STRING,
+      OrganizationId: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

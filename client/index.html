@@ -11,7 +11,7 @@
     <!-- form login -->
 <div id="app">
     <div class="border-solid rounded border border-dark" v-if="currentPage === 'login-page' ">
-        <form @submit.prevent="login" class="flex h80">
+        <form @submit.prevent="login" class="flex-login h80">
            <input 
            v-model="user.email" 
            type="text" 
@@ -27,194 +27,88 @@
            placeholder="password"
            >
             <button class="mb-4 btn btn-primary">Login</button>
-            <button class="mb-4 btn btn-success">Register</button>
+            <!-- <button class="mb-4 btn btn-success">Register</button> -->
            <img class="logo-login" src="./img/caneband-logo.png" alt="" width="75px">
         </form>
     </div>
     <div class="main-page" v-else-if="currentPage === 'main-page' ">
-        <div class="header"></div>
-            <a href="#">(Back to jobs)</a>
-            <h2>Manager</h2>
-            <p>Wahyu Setiawan - Marketing Department</p>
-        <div class="row flex-table">
-            <div class="col-sm-2">
-                <!-- navbar -->
-                <div class="navbar bg-cream">
-                    <div class="upper-logo">
-                        <img class="logo-navbar" src="./img/caneband-logo.png" alt="" width="75px">
-                        <img class="logo-navbar" src="./icons/png/002-home.png" alt="" width="20px">
-                        <img class="logo-navbar" src="./icons/png/003-affiliate-marketing.png" alt="" width="20px">
-                        <img class="logo-navbar" src="./icons/png/005-envelope.png" alt="" width="20px">
-                        <a href="">
-                        <img class="logo-navbar" src="./icons/png/004-magnifying-glass.png" alt="" width="20px">
-                        </a>
-                    </div>
-                    <div class="lower-logo">
-                        <a href="#" @click="logout">
-                        <img src="./icons/png/logout.png" alt="" width="20px">
-                        </a>
-                    </div>
+          <!-- navbar -->
+          <div class="navbar bg-cream p-0">
+                <img src="./img/caneband-logo.png" alt="" width="75px">
+                <a href="">
+                    <img src="./icons/png/002-home.png" alt="" width="35px">
+                </a>
+                <a href="">
+                    <img src="./icons/png/003-affiliate-marketing.png" alt="" width="35px">
+                </a>
+                <a href="">
+                    <img src="./icons/png/005-envelope.png" alt="" width="35px">
+                </a>
+                <a href="">
+                    <img src="./icons/png/004-magnifying-glass.png" alt="" width="35px">
+                </a>
+                <a href="#" @click="logout">
+                    <img src="./icons/png/logout.png" alt="" width="35px">
+                </a>
+        </div>
+        <!-- header -->
+        <div class="header">
+            <h2>Selamat Datang, {{user.name}}</h2>
+        </div>
+        <div class="cards">
+            <div class="side-bar card-body col col-xl-3 border border-dark m-2 p-3">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <form action="">
+                    <h3>Add New Todo</h3>
+                    <input v-model="newTodo.title" type="text" placeholder="Title"><br>
+                    <input v-model="newTodo.description" type="text" placeholder="Description"><br>
+                    <input v-model="newTodo.due_date" type="date"><br>           
+                    <button @click= "addTodo" class="btn btn-secondary">Add</button><br>
+                </form>
+            </div>
+            <div class="col col-xl-2 border border-primary m-2 p-3">
+                <h2>Backlog</h2>
+                <div v-for="todo in todoList" class="card-body border p-3">
+                    <h5 class="card-title">{{todo.title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{todo.due_date}}</h6>
+                    <p class="card-text">{{todo.description}}</p>
+                    <button @click="processTodo()" class="btn btn-primary">process</button><br><br>
+                </div> 
+            </div>
+            <div class="col col-xl-2 border border-warning m-2 p-3">
+                <h2>Todo</h2>
+                <div class="card-body border p-3">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
                 </div>
-                <!-- content -->
             </div>
-            <div class="col-sm-2 bg-cream pl-5 py-3 border border-dark">
-                <table border="1">
-                    <tr>
-                        <th>To do list</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <form v-on:submit.prevent="addTodo">
-                                <input type="text" name="" id="" placeholder="add Title" v-model="newTodo">
-                                <button>add</button>
-                                    <dl>
-                                        <dd v-for="todo in todoList" @click="processTodo">-{{todo}} 
-                                            <button type="button" class="btn btn-primary">
-                                                Process
-                                            </button>
-                                        </dd>
-                                    </dl>
-                            </form>
-                        </td>
-                    </tr>
-                </table>
+            <div class="col col-xl-2 border border-success m-2 p-3">
+                <h2>Doing</h2>
+                <div class="card-body border p-3">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
             </div>
-            <div class="col-sm-3 bg-cream p-5 border border-dark">
-                <table border="1">
-                    <tr>
-                        <th>On Going</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <dl>
-                            
-                                <dt>Title 1</dt>
-                                <dd>- todo-list 1 
-                                    <button @click="fetchTodos" type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                                <dd>- todo-list 2 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                                <dd>- todo-list 4
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                            
-                                <dt>Title 2</dt>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-warning">Need Assistant</button>
-                                </dd>
-                            </dl>
-                            
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-sm-3 bg-cream pl-5 py-3 border border-dark">
-                <table border="1">
-                    <tr>
-                        <th>Need Assistant</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <dl>
-                            
-                                <dt>Title 1</dt>
-                                <dd>- todo-list 1 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                                <dd>- todo-list 2 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                                <dd>- todo-list 4
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                                <dt>Title 2</dt>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                                <dd>- todo-list 3 
-                                    <button type="button" class="btn btn-success">Done</button> ||
-                                    <button type="button" class="btn btn-danger">Cancelled</button>
-                                </dd>
-                            </dl>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-sm-1 bg-cream pl-5 py-3 border border-dark">
-                <table border="1">
-                    <tr>
-                        <th>Finished</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <dl>
-                                <dt>Title 1</dt>
-                                <dd>- todo-list 1 
-                                <dd>- todo-list 2 
-                                <dd>- todo-list 3
-                                <dd>- todo-list 4
-                            </dl>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-sm-1 bg-cream pl-5 py-3 border border-dark">
-                <table border="1">
-                    <tr>
-                        <th>Cancelled</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <dl>
-                                <dt>Title 1</dt>
-                                <dd>- todo-list 1 
-                                <dd>- todo-list 2 
-                                <dd>- todo-list 3
-                                <dd>- todo-list 4
-                            </dl>
-                        </td>
-                    </tr>
-                </table>
+            <div class="col col-xl-2 border border-danger m-2 p-3">
+                <h2>Completed</h2>
+                <div class="card-body border p-3">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

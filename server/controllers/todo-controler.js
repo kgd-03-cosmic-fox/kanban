@@ -1,14 +1,13 @@
-const {Task} = require(`../models/index`)
+const {Task,Organization} = require(`../models/index`)
 
 class TodoController{
     static postNewTodoByByOrganizationName(req,res){
-        console.log(req)
         let newTodo ={
             title: req.body.title,
             description: req.body.description,
             due_date: req.body.due_date,
             status: "planned",
-            OrganizationName: req.loggedInUser.organization_name
+            OrganizationId: req.loggedInUser.organization_id
         }
         Task.create(newTodo)
         .then(()=>{
@@ -16,24 +15,32 @@ class TodoController{
                 message:"Success adding new todo"
             })
         })
-        .catch(()=>{
+        .catch((err)=>{
+            if(err.errors[0].type === "Validation error" ){
+                res.status(400).json({
+                    message: err.errors[0].message
+                })
+            }else{
             res.status(500).json({
                 message:"Internal server error"
             })
+            }
         })
     }
     static getAllTodoByOrganizationName(req,res){
         Task.findAll({
             where:{
-                OrganizationName: req.loggedInUser.organization_name
-            }
+                OrganizationId: req.loggedInUser.organization_id
+            },
+            include:[Organization]
         })
         .then(data=>{
             res.status(200).json({
-                data
+                data,
+                payload: req.loggedInUser
             })
         })
-        .catch(err=>{
+        .catch(_=>{
             res.status(500).json({
                 message:"Internal server error"
             })

@@ -7,8 +7,7 @@ const Controller = require("../controllers/controller")
 router.post(`/register`,Controller.postRegister)
 router.post(`/login`,Controller.postLogin)
 
-//Authentication
-router.use(`/todo`,authentication)
+router.use(`/todo`,authentication)//Authentication
 router.use(`/todo`,todoRouter)
 
 

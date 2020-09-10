@@ -1,17 +1,21 @@
+
 const baseUrl = "http://localhost:3000"
 
 new Vue ({
     el:"#app",
     data:{
-        currentPage: "login-page",
+        currentPage: "",
         user:{
+            name: "",
             email: "",
             password: ""
         },
-        msg:"Hello Vue",
-        newTodo:"",
+        newTodo:{
+            title: "",
+            description: "",
+            due_date: ""
+        },
         todoList: [],
-        onGoing:[]
     },
     methods:{
         login(){
@@ -24,10 +28,12 @@ new Vue ({
                 }
             })
             .then(response=>{
-                console.log(response)
                 this.currentPage = "main-page"
-
-                localStorage.setItem(`access_token`, response.data.token)
+                this.user.name = response.data.payload.name
+                localStorage.setItem(
+                    `access_token`,
+                    response.data.token
+                    )
             })
             .catch(err=>{
                 console.log(err)
@@ -38,22 +44,57 @@ new Vue ({
             this.currentPage = "login-page"
         },
         addTodo(){
-            this.todoList.push(this.newTodo)
-        },
-        processTodo(){
-            
-        },
-        fetchTodos(){
             axios({
-                method: "get",
-                url: `${baseUrl}/todo`
+                method:"POST",
+                url:`${baseUrl}/todo`,
+                data:{
+                    title: this.newTodo.title,
+                    description: this.newTodo.description,
+                    due_date: this.newTodo.due_date
+                },
+                headers:{
+                    access_token: localStorage.getItem(
+                        "access_token"
+                    )
+                }
             })
-            .then(data=>{
-                console.log(data)
+            .then(_=>{
+                this.fetchData()
             })
             .catch(err=>{
                 console.log(err)
             })
+        },
+        processTodo(id){
+            console.log(id)
+        },
+        fetchData(){
+            axios({
+                method:"GET",
+                url: `${baseUrl}/todo`,
+                headers:{
+                access_token: localStorage.getItem(
+                    `access_token`
+                    )
+                }
+            })
+            .then(response=>{
+                this.todoList = response.data.data
+                this.user.name = response.data.payload.name
+            
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+    },
+    created(){
+        if(localStorage.getItem(`access_token`)){
+            this.currentPage = "main-page"
+            this.fetchData()
+        }
+        else{
+            this.currentPage = "login-page"
         }
     }
 })

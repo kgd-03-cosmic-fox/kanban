@@ -10,7 +10,7 @@ class Controller{
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            OrganizationName: req.body.organization_name
+            OrganizationId: req.body.organization_name //Body input tulisannya name tapi valuenya dalam bentuk "id"
         }
         User.create(newUser)
         .then((data)=>{
@@ -19,8 +19,9 @@ class Controller{
             })
         })
         .catch((err)=>{
+            console.log(err)    
            if(err.name === "SequelizeUniqueConstraintError"){
-               res.status(400).json({
+                res.status(400).json({
                    message: err.errors[0].message
                })
            }
@@ -48,10 +49,11 @@ class Controller{
                     const payload = {
                         name: data.name,
                         email:data.email,
-                        organization_name:data.OrganizationName
+                        organization_id:data.OrganizationId
                     }
                     res.status(202).json({
-                        token: jwt.sign(payload,process.env.JWT_SECRET_KEY)
+                        token: jwt.sign(payload,process.env.JWT_SECRET_KEY),
+                        payload
                     })
                 }
                 else{

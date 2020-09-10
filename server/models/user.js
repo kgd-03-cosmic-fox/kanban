@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      User.belongsTo(models.Organization)
     }
   };
   User.init({
@@ -48,8 +48,8 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    OrganizationName: {
-      type: DataTypes.STRING,
+    OrganizationId: {
+      type: DataTypes.INTEGER,
       allowNull:false,
       validate:{
         notEmpty:{
@@ -66,6 +66,19 @@ module.exports = (sequelize, DataTypes) => {
   User.beforeCreate((userInstance)=>{
     const salt = bcrypt.genSaltSync(10)
     userInstance.password = bcrypt.hashSync(userInstance.password,salt)
+
+    let newFormatName=""
+    for(let a = 0; a < userInstance.name.length; a++ ){
+      if(a===0){
+        newFormatName+= userInstance.name[a].toUpperCase()
+        }
+        else{
+        newFormatName+= userInstance.name[a]
+        }
+      }
+
+    userInstance.name = newFormatName
+
   })
 
 

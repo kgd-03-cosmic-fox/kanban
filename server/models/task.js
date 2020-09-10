@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Task.belongsTo(models.Organization)
     }
   };
   Task.init({
@@ -26,8 +26,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: DataTypes.STRING,
     status: DataTypes.STRING,
-    due_date: DataTypes.DATE,
-    OrganizationName: DataTypes.STRING
+    due_date: {
+      type: DataTypes.DATE,
+      validate:{
+        isAfter: {
+          args: new Date(Date.now()).toLocaleDateString(),
+          msg: "Due date invalid"
+        }
+      }
+    },
+    OrganizationId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Task',
