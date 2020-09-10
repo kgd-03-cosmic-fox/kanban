@@ -6,13 +6,21 @@ new Vue ({
       email:'',
       password:'',
     },
+    registerData:{
+      name:'',
+      email:'',
+      password:'',
+      jobDesk:'',
+      OrganisationId:''
+    },
     task:{
       title:'',
       description:'',
       category:'',
       due_date:''
     },
-    tasks:[]
+    tasks:[],
+    organization:[]
   },
   methods:{
     login(){
@@ -33,6 +41,38 @@ new Vue ({
       })
       .catch(err =>{
           console.log(err)
+      })
+    },
+    showRegister(){
+      axios({
+        method:'Get',
+        url:'http://localhost:3007/org'
+      })
+      .then(response =>{
+        this.organization = response.data
+        this.currentPage = 'test-register'
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    },
+    registerUser(){
+      axios({
+        method:'Post',
+        url:'http://localhost:3007/register',
+        data:{
+          name:this.registerData.name,
+          email:this.registerData.email,
+          password:this.registerData.password,
+          jobDesk:this.registerData.jobDesk,
+          OrganisationId:this.registerData.OrganisationId
+        }
+      })
+      .then(data =>{
+        console.log(data)
+      })
+      .catch(err =>{
+        console.log(err)
       })
     },
     showForm(){

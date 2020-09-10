@@ -40,13 +40,35 @@
                 <div class="uk-margin">
                   <div class="uk-inline">
                     <span class="uk-form-icon uk-form-icon-flip"></span>
-                    Didn't have account? <a href="register.html">Register</a>
+                    Didn't have account? <a href="#" @click="showRegister">Register</a>
                   </div>
                 </div>
               </form>
             </div>
           </div>
-        <!-- home page -->
+
+          <!-- register -->
+          <div id="test-add" v-else-if="currentPage == 'test-register'">
+            <form>
+              <h3>Register</h3>
+              <label for="name">Name: </label>
+              <input v-model='registerData.name' type="text" placeholder="Name"><br>
+              <label for="email">Email: </label>
+              <input v-model='registerData.email' type="text" placeholder="Email"><br>
+              <label for="Job Desk">Password: </label>
+              <input v-model='registerData.password' type="password" placeholder="Password"><br>
+              <label for="password">Job Desk : </label>
+              <input v-model='registerData.jobDesk' type="text" placeholder="JobDesk"><br>
+              <label for="organisation">Organisation: </label>
+              <select v-model='registerData.OrganisationId'>
+                <option v-for="(org, idx) in organization" value="org[idx].id">{{ org.name }}</option>
+              <select>
+              <br>
+              <button class="btn btn-secondary" @click="registerUser">Register</button><br>
+          </form>
+          </div>
+
+        <!-- add page -->
       <div id="test-add" v-else-if="currentPage == 'test-add'">
         <form>
           <h3>Add New Todo</h3>
@@ -63,7 +85,7 @@
           <button class="btn btn-secondary" @click="addTask">Add</button><br>
       </form>
       </div>
-
+      <!-- home page -->
       <div id="home-page" v-else-if="currentPage === 'home-page'">
         <nav class="navbar navbar-expand-lg navbar-light bg-primary mb-2">
           <a class="navbar-brand font-white" href="#">Navbar</a>

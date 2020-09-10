@@ -2,6 +2,15 @@ const { User, Task, Organisation } = require('../models')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 class Controller{
+  static getOrganisation(req,res){
+    Organisation.findAll()
+    .then(data =>{
+      res.status(200).json(data)
+    })
+    .catch(err =>{
+      res.status(500).json(err)
+    })
+  }
   static async postLogin(req,res){
     try{
       const user = await User.findOne({ where: { email: req.body.email }})
