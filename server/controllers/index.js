@@ -128,13 +128,28 @@ class Controller{
     })
   }
   static getTask(req,res){
+    let myData = []
+    let dummyObj={}
     Task.findAll({
       where:{
         OrganisationId:req.loggedInUser.organisationId
-      }
+      },
+      include:Organisation
     })
     .then(data =>{
-      res.status(200).json(data)
+      data.forEach((el) => {
+        dummyObj = {
+          id:el.id,
+          title:el.title,
+          description:el.description,
+          category:el.category,
+          due_date:`${new Date(el.due_date).getDate()}-${new Date(el.due_date).getMonth()}-${new Date(el.due_date).getFullYear()}`,
+          Organisation: el.Organisation.name
+        }
+        myData.push(dummyObj)
+      });
+
+      res.status(200).json(myData)
     })
     .catch(err =>{
       console.log(err)
