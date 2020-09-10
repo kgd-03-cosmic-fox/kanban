@@ -37,8 +37,7 @@ class TodoController{
         .then(data=>{
             res.status(200).json({
                 data,
-                payload: req.loggedInUser
-            })
+                payload: req.loggedInUser            })
         })
         .catch(_=>{
             res.status(500).json({
