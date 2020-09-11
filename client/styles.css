@@ -25,3 +25,9 @@
 #board-section {
   background-color: rgb(0, 0, 0);
 }
+
+.card-title{
+ display: flex;
+ justify-content: space-between;
+ text-align: center; 
+}

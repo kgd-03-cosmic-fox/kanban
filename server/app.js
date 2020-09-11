@@ -1,7 +1,7 @@
-require('dotenv').config(); //comment this out before deploy
+//require('dotenv').config(); //comment this out before deploy
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const routers = require('./routes/index.js');
 const cors = require('cors');
 const errorCheck = require('./middlewares/error-check.js');
