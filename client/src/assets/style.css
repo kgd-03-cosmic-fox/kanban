@@ -45,14 +45,14 @@ body {
 
     margin: 5px;
     overflow: scroll;
-    min-height: 300px;
-    max-height: 800px;
-    min-width: 100px;
+    min-height: 210px;
+    max-height: 1000px;
+    min-width: 310px;
     display: flex;
     flex-direction: column;
     align-items: center;
     scrollbar-width: none;
-
+    background-color: rgba(255,255,255,60%)
 }
 
 .box {
@@ -62,12 +62,12 @@ body {
 
 .card {
 
-    background-color: rgba(0,0,0,75%);
+    background-color: rgba(0,0,0,90%);
     color: white;
     margin: 5px;
     padding: 5px;
     width: 300px;
-    min-height: 150px;
+    height: 200px;
     max-height: 200px;
     
 }
@@ -81,26 +81,6 @@ body {
 #task-list-page , #add-task-page{
     width: 100%;
 
-}
-
-#task-list-page {
-    /* display: none; */
-}
-
-#home-page {
-    /* display: none; */
-}
-
-#add-task-page{
-    /* display: none; */
-}
-
-#login-page {
-    /* display: none; */
-}
-
-#register-page {
-    /* display: none; */
 }
 
 #login-page , #register-page{
@@ -132,8 +112,21 @@ body {
     text-align: center;
     
 }
+ input[name=organizations_name]{
 
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/org.png');
+    background-position: 10px 10px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
 
+}
 
 #register-form  input[name=username-register]{
 
@@ -327,6 +320,38 @@ input[type=date]{
     cursor: default;
 }
 
-input:hover , #side-bar .task-status-title h2 , #side-bar .task-status-title #go-to-list-task , #side-bar .task-status-title #go-to-add-task , #side-bar .task-status-title #text-logout {
+input:hover , #side-bar .task-status-title h4 , #side-bar .task-status-title #go-to-list-task , #side-bar .task-status-title #go-to-add-task , #side-bar .task-status-title #text-logout {
     cursor: pointer;
+}
+
+#post-add-org{
+    margin-top: 25px;
+    border-radius: 12px;
+    width: 150px;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 15px 16px;
+    background-color: black;
+    border: none;
+    color: white;
+    margin: 40px auto;
+    text-align: center;
+}
+
+#add-org{
+    margin-top: 25px;
+    border-radius: 12px;
+    width: 200px;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 15px 16px;
+    background-color: #004a87;
+    border: none;
+    color: white;
+    margin: 40px auto;
+    text-align: center;
+}
+
+#org-bar{
+    width: 100vw;
 }

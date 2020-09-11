@@ -13,7 +13,7 @@ class OrganizationController {
         .then(data=>{
 
             if(data){
-                res.send(400).json({message : 'Organization Name must be Unique'})
+                res.status(400).json({message : 'Organization Name must be Unique'})
             }else{
 
                 Org.create({

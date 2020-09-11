@@ -13,10 +13,11 @@ function authentication(req , res , next){
             if(payload){
 
                 req.isLoggedIn = payload
-
+ 
+                
                 User.findByPk(payload.id)
                 .then(data=>{
-        
+
                     if(data){   
                         next()
                     }else{

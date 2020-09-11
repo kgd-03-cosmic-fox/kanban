@@ -5,25 +5,28 @@ function TaskAuthorizationUpdateDelete (req, res , next){
     
     Task.findOne({
         where : {
-            TaskId : req.params.idTask
+            id : req.params.idTask
         }
     })
     .then(data=>{
-
         if(data){
             
             idOrg = data.OrgId
 
-            return User.findOne({
+            return OrgMember.findAll({
                 where : {
-                    id : req.isLoggedIn.id
+                    UserId : req.isLoggedIn.id
                 }
             })
             .then(data=>{
 
-                if(data.OrgId === idOrg){
-                    next()
-                }
+                console.log(data)
+                data.forEach(el=>{
+                    if(el.OrgId === idOrg){
+                        next()
+                    }
+                })
+
             })
             .catch(next)
         }

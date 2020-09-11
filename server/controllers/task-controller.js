@@ -19,7 +19,8 @@ class TaskController {
             
         })
         .then(data=>{
-            res.status(200).json({data})
+
+            res.status(200).json(data)
         })
         .catch(next)
 
@@ -62,7 +63,7 @@ class TaskController {
                 }
             })
             .then(data=>{
-
+                console.log(data)
                 if(data != 0){
 
                     res.status(200).json({message : 'Data has been Updated'})

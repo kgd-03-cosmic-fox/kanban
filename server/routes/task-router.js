@@ -7,8 +7,8 @@ const TaskAuthorizationUpdateDelete = require('../middlewares/task-authorization
 
 
 router.get('/:idOrg' ,TaskAuthorization , TaskController.taskAll)
-router.post('/:idOrg'  , TaskController.postTask)
-router.patch('/:idTask' ,  TaskController.patchStatus)
-router.delete('/delete/:idTask' , TaskController.deleteTask)
+router.post('/:idOrg'  , TaskAuthorization, TaskController.postTask)
+router.patch('/:idTask' ,  TaskAuthorizationUpdateDelete,TaskController.patchStatus)
+router.delete('/:idTask' , TaskAuthorizationUpdateDelete,TaskController.deleteTask)
 
 module.exports = router

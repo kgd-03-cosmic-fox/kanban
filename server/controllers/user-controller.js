@@ -64,11 +64,11 @@ class UserController{
                 res.status(200).json({id: data.id , username : data.username , email : data.email , access_token})
 
              }else{
-                next({status : 404 , message : 'Wrong Email / Password. Please check again'})
+                next({status : 400 , message : 'Wrong Email / Password. Please check again'})
              }
 
             }else{
-                next({status : 404 , message : 'Wrong Email / Password. Please check again'})
+                next({status : 400 , message : 'Wrong Email / Password. Please check again'})
             }
 
         })

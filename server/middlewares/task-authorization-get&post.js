@@ -15,7 +15,7 @@ function TaskAuthorization (req , res , next) {
         checkOrg = false
 
         data.Orgs.forEach(el=>{
-            console.log(el.id , req.params.idOrg)
+
             if(req.params.idOrg == el.id){
                 checkOrg = true
             }
