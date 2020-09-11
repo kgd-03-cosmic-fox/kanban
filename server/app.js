@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended : true}))
 app.use(cors())
 app.use(routes)
 
-app.listen(port , ()=>{
+app.listen(process.env.PORT , ()=>{
     console.log(`Listening into port ${port}`)
 })
 
