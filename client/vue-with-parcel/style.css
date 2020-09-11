@@ -1,0 +1,82 @@
+
+/* login */
+
+div.border-solid{
+    width: 25%;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+}
+
+.header{
+    margin: 50px;
+}
+
+.flex-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.h80{
+    height: 80%;
+}
+
+.main-page{
+    display: flex;
+    flex-flow: column;
+}
+
+/* navigation-bar */
+
+.main-page .navbar{
+    display: flex;
+    flex-direction: row;
+    background-color: silver;
+    justify-content: space-around;
+    width:100%;
+}
+
+/* main-page */
+
+.main-page .header{
+    margin: 10px;
+}
+
+.main-page .cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.main-page .cards .kanbanBoard{
+    display: flex;
+    margin: 0px;
+    width: 100%;
+}
+
+.logo-login{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* background-color */
+
+
+.bg-cream{
+    background-color: #F1E2CB;
+}
+
+.bg-darkBrown{
+    background-color: #341C1A;
+}
+
+.bg-coralAgakDark{
+    background-color: #B46C5D;
+}
+
+/* table */
+
+
+

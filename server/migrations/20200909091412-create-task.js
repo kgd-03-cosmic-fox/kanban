@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       due_date: {
         type: Sequelize.DATE
