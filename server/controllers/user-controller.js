@@ -1,7 +1,7 @@
 const { Org , OrgMember , User , Task , Stat} = require('../models')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-require('dotenv').config()
+// require('dotenv').config()
 class UserController{
 
     static register(req, res , next){
