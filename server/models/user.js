@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       User.belongsToMany(models.Org , {through : models.OrgMember})
-      User.hasMany(models.task)
+      User.hasMany(models.Task)
       User.hasMany(models.OrgMember)
     }
   };

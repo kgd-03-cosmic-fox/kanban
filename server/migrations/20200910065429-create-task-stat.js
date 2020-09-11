@@ -1,33 +1,24 @@
 'use strict';
 module.exports = {
   up:  (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Tasks', {
+    return queryInterface.createTable('TaskStats', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      taskname: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      due_date: {
-        type: Sequelize.DATEONLY
-      },
-      UserId: {
+      StatId: {
         type: Sequelize.INTEGER,
         references : {
-          model : 'Users',
-          key : 'id'
+          model: 'Stats',
+          key: 'id'
         }
       },
-      OrgId: {
+      TaskId: {
         type: Sequelize.INTEGER,
         references : {
-          model : 'Orgs',
+          model : 'Tasks',
           key : 'id'
         }
       },
@@ -42,6 +33,6 @@ module.exports = {
     });
   },
   down:  (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Tasks');
+    return queryInterface.dropTable('TaskStats');
   }
 };

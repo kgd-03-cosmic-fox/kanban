@@ -23,7 +23,7 @@ class OrganizationController {
 
                     return OrgMember.create({
                         OrgId : data.id,
-                        UserId : req.body.UserId,
+                        UserId : req.isLoggedIn.id,
                         FlagOwner : 1
                     })
 
@@ -41,7 +41,7 @@ class OrganizationController {
 
         OrgMember.findAll({
             where : {
-                UserId : req.body.UserId
+                UserId : req.isLoggedIn.id
             },
             include : Org
         })

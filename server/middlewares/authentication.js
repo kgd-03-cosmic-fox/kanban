@@ -16,15 +16,15 @@ function authentication(req , res , next){
 
                 User.findByPk(payload.id)
                 .then(data=>{
-                    if(data){
-
+        
+                    if(data){   
                         next()
-                    
                     }else{
                     
                         throw ({status:401 , message: "Don't Have Authentication" })
                     
                     }
+
                 })
                 .catch(next)
             

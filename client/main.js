@@ -4,12 +4,10 @@ var app = new Vue({
       message: 'Hello Vue!',
       currentPage : 'login',
       homePage : 'list',
-      taskToDo : [],
-      taskOnProcess : [],
-      taskReview : [],
-      taskDone : [],
+      tasks : [],
+      idOrg : 1,
       addTask : {
-          task_name : '',
+          taskname : '',
           description : '',
           due_date : ''
       },
@@ -24,45 +22,51 @@ var app = new Vue({
       }
     },
     methods:{
-        fetchTaskToDo(){
-
-            // getting all Task where user id = user id login
-            // stats Todo
+        fetchTask(){
 
             axios({
                 method: 'get',
-                url: 'http://localhost:3000/Task'
+                url: `http://localhost:3000/tasks/${this.idOrg}`,
+                headers :{
+                    token : localStorage.getItem('token')
+                }
             })
             .then(response =>{
-                console.log(response)
-                this.taskToDo = response.data
-                console.log(this.taskToDo.User)
+                this.tasks = response.data.data
+                //this.tasks[0].Stats[0].stat_name -> for getting status name
+                
             })
             .catch(err=>{
                 console.log(err)
             })
 
         },
-        fetchTaskOnProcess(){
-            
-            // getting all Task where user id = user id login
-            // stats On Process
-
-        },
-        fetchTaskReview(){
-
-            // getting all Task where user id = user id login
-            // stats Review
-
-        },
-        fetchTaskDone(){
-
-            // getting all Task where user id = user id login
-            // stats Done
-        },
         loginSubmit(){
 
-            // logining into website and check data in database
+            axios({
+                method : 'post',
+                url : 'http://localhost:3000/login',
+                data :{
+                    email : this.login.email,
+                    password : this.login.password
+                }
+            })
+            .then(response =>{
+                this.currentPage = 'homepage'
+                localStorage.setItem('token' ,response.data.access_token)
+                localStorage.setItem('idUser' , response.data.id)
+                localStorage.setItem('emailUser' , response.data.email)
+                this.fetchTask()
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+            .always(()=>{
+                this.login.email = ''
+                this.login.password = ''
+            })
+            // logining into website and check data in 
+            
 
         },
         registerPage(){
@@ -70,7 +74,27 @@ var app = new Vue({
         },
         registerSubmit(){
 
-            // register if not have user for login
+            axios({
+                method : 'post',
+                url: 'http://localhost:3000/register',
+                data:{
+                    username : this.register.username,
+                    email : this.register.email,
+                    password : this.register.password,
+                    
+                }
+            })
+            .then(data=>{
+                this.currentPage = 'login'
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+            .always(()=>{
+                    this.register.username = ''
+                    this.register.email = ''
+                    this.register.password = ''
+            })            
 
         },
         back(){
@@ -87,33 +111,60 @@ var app = new Vue({
             
         },
         updateStatTodo( id ){
-
             console.log(id)
-
-        },
-        updateStatOnProc( id ){
-
-        },
-        updateStatReview( id ){
-
-        },
-        updateStateDone( id ){
-            
         },
         addNewTask(){
-
             this.homePage = 'task'
-        
         },
         myList(){
-            
             this.homePage = 'list'
-        }
+        },
+        postNewTask(){
+
+          axios({
+              method : 'post',
+              url : `http://localhost:3000/tasks/${this.idOrg}`,
+              data :{
+                  taskname : this.addTask.taskname, 
+                  description : this.addTask.description,
+                  due_date : this.addTask.due_date
+              },
+              headers :{
+                  token : localStorage.getItem('token')
+              }
+          })
+          .then(data=>{
+            
+                this.homePage = 'list'
+                this.addTask.taskname = '' 
+                this.addTask.description = ''
+                this.addTask.due_date = ''
+                this.fetchTask()
+
+          })
+          .catch(err=>{
+              console.log(err)
+          })
+
+      }
     },
     created(){
 
-            this.currentPage = 'homepage'
-            this.fetchTaskToDo()
-        
+        if(localStorage.token){
+            this.fetchTask()
+            this.currentPage = 'home-page'
+        }else{
+            this.currentPage = 'login'
+        }
+
+    },
+    computed:{
+
+        filterData () {
+            //this.tasks[0].Stats[0].stat_name -> for getting status 
+            return this.tasks.filter( task => task.Stats[0].stat_name.includes('To Do'))
+            
+        }
+
     }
   })

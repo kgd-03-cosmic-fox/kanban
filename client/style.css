@@ -321,3 +321,12 @@ input[type=date]{
     height: 100vh;
     background-color: rgba(255,255,255,50%);
 }
+
+
+:hover {
+    cursor: default;
+}
+
+input:hover , #side-bar .task-status-title h2 , #side-bar .task-status-title #go-to-list-task , #side-bar .task-status-title #go-to-add-task , #side-bar .task-status-title #text-logout {
+    cursor: pointer;
+}

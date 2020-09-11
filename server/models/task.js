@@ -13,18 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       Task.belongsTo(models.User)
-      Task.hasOne(models.Stat)
+      Task.belongsToMany(models.Stat , {through : models.TaskStat})
       Task.belongsTo(models.Org)
-  
+      Task.hasMany(models.TaskStat)
+
     }
   };
   Task.init({
     
-    task_name: {
+    taskname: {
       type : DataTypes.STRING,
       allowNull : false,
       validate : {
-        isNull : {
+        notNull : {
           args : true,
           msg : 'Task Name tidak boleh kosong'
         },
@@ -39,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       allowNull : false,
       validate : {
-        isNull : {
+        notNull : {
           args : true,
           msg : 'Description tidak boleh kosong'
         },
@@ -80,8 +81,7 @@ module.exports = (sequelize, DataTypes) => {
       } 
     },
     UserId: DataTypes.INTEGER,
-    OrgId: DataTypes.INTEGER,
-    StatId: DataTypes.INTEGER
+    OrgId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Task',

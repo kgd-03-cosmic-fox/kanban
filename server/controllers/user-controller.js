@@ -26,6 +26,7 @@ class UserController{
             }
         })
         .then(data=>{
+           
            dataUser = data
 
             return OrgMember.create({
@@ -35,16 +36,9 @@ class UserController{
 
         })
         .then(dataOrg=>{
-            let newUser = {}
-            dataUser.Org = dataOrg            
 
-            for( user in dataUser){
-                if(user != password){
-                    newUser[user] = dataUser[user]
-                }
-            }
+            res.status(200).json({message : `Username : ${dataUser.username} , Email : ${dataUser.email} Has been Created`})
 
-            res.status(200).json(newUser)
         })
         .catch(next)
     }
@@ -53,7 +47,9 @@ class UserController{
     static login(req , res , next){
 
         User.findOne({
-            email : req.body.email
+            where : {
+                email : req.body.email
+            }
         })
         .then(data=>{
 
@@ -63,9 +59,9 @@ class UserController{
 
              if(checkPassword){
 
-                let access_token = jwt.sign({id: user.id , username : data.username , email : data.email}, process.env.SECRET_KEY)
+                let access_token = jwt.sign({id: data.id , dataname : data.username , email : data.email}, process.env.SECRET_KEY)
 
-                res.status(200).json({id: user.id , username : data.username , email : data.email , access_token})
+                res.status(200).json({id: data.id , username : data.username , email : data.email , access_token})
 
              }else{
                 next({status : 404 , message : 'Wrong Email / Password. Please check again'})
@@ -76,7 +72,7 @@ class UserController{
             }
 
         })
-        .err(next)
+        .catch(next)
 
     }
 
