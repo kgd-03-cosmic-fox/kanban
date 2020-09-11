@@ -9,6 +9,6 @@ app.use(cors())
 app.use(routes)
 
 app.listen(process.env.PORT , ()=>{
-    console.log(`Listening into port ${port}`)
+    console.log(`Listening into port`)
 })
 
