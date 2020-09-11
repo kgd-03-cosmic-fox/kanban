@@ -11408,11 +11408,9 @@ exports.default = void 0;
 //
 //
 //
-//
-//
 var _default = {
   name: "KanbanCard",
-  props: ["todo", "status", "kondisi"]
+  props: ["todo", "status", "elem"]
 };
 exports.default = _default;
         var $695c04 = exports.default || module.exports;
@@ -11427,57 +11425,51 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.kondisi, function(elem) {
-      return _c("div", { key: elem.id, staticClass: "card-body border p-3" }, [
-        _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(elem.title))]),
-        _vm._v(" "),
-        _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-          _vm._v(_vm._s(elem.due_date))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v(_vm._s(elem.description))
-        ]),
-        _vm._v(" "),
-        _vm.status.id < 3
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                on: {
-                  click: function($event) {
-                    return _vm.processTodo(elem.id, _vm.status.id + 1)
-                  }
-                }
-              },
-              [_vm._v("Next")]
-            )
-          : _vm._e(),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _vm.status.id > 0
-          ? _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                on: {
-                  click: function($event) {
-                    return _vm.processTodo(elem.id, _vm.status.id - 1)
-                  }
-                }
-              },
-              [_vm._v("Return")]
-            )
-          : _vm._e(),
-        _c("br"),
-        _c("br")
-      ])
-    }),
-    0
-  )
+  return _c("div", { staticClass: "card-body border p-3 kanbanCard" }, [
+    _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.elem.title))]),
+    _vm._v(" "),
+    _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+      _vm._v(_vm._s(_vm.elem.due_date))
+    ]),
+    _vm._v(" "),
+    _c("p", { staticClass: "card-text" }, [
+      _vm._v(_vm._s(_vm.elem.description))
+    ]),
+    _vm._v(" "),
+    _vm.status.id < 3
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                return _vm.processTodo(_vm.elem.id, _vm.status.id + 1)
+              }
+            }
+          },
+          [_vm._v("Next")]
+        )
+      : _vm._e(),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _vm.status.id > 0
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-danger",
+            on: {
+              click: function($event) {
+                return _vm.processTodo(_vm.elem.id, _vm.status.id - 1)
+              }
+            }
+          },
+          [_vm._v("Return")]
+        )
+      : _vm._e(),
+    _c("br"),
+    _c("br")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11532,12 +11524,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   name: "KanbanBoard",
   components: {
     KanbanCard: _KanbanCard.default
   },
-  props: ["todo", "status", "kondisi"]
+  props: ["todo", "status"],
+  computed: {
+    filterTodo: function filterTodo() {
+      var _this = this;
+
+      // for(let a = 0; this.status.length; a++){
+      return this.todo.filter(function (todo) {
+        return todo.status == _this.status.id;
+      }); // }
+    }
+  }
 };
 exports.default = _default;
         var $2e929f = exports.default || module.exports;
@@ -11552,18 +11558,21 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "col col-xl-2 border border-primary m-2 p-3" },
-      [
-        _c("h1", [_vm._v(_vm._s(_vm.status.name))]),
-        _vm._v(" "),
-        _c("KanbanCard", { attrs: { todo: _vm.todo } })
-      ],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "col col-xl-2 border border-primary m-2 p-3" },
+    [
+      _c("h1", [_vm._v(_vm._s(_vm.status.name))]),
+      _vm._v(" "),
+      _vm._l(_vm.filterTodo, function(elem) {
+        return _c("KanbanCard", {
+          key: elem.id,
+          attrs: { elem: elem, todo: _vm.todo, status: _vm.status }
+        })
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11618,8 +11627,49 @@ var _KanbanBoard = _interopRequireDefault(require("./components/KanbanBoard"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "App",
   components: {
@@ -11727,25 +11777,6 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
-    }
-  },
-  computed: {
-    filterTodo: function filterTodo() {
-      var _this4 = this;
-
-      var _loop = function _loop(a) {
-        return {
-          v: _this4.todoList.filter(function (todo) {
-            return todo.status == _this4.status[a].id;
-          })
-        };
-      };
-
-      for (var a = 0; this.status.length; a++) {
-        var _ret = _loop(a);
-
-        if (_typeof(_ret) === "object") return _ret.v;
-      }
     }
   },
   created: function created() {
@@ -12009,7 +12040,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56730" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57993" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

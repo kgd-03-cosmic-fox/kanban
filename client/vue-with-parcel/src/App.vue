@@ -28,7 +28,7 @@
                         <button @click= "addTodo" class="btn btn-secondary">Add</button><br>
                     </form>
                 </div>
-                <KanbanBoard 
+                <KanbanBoard
                 v-for="status in status" 
                 :key="status.id" 
                 :status="status" 
@@ -174,14 +174,6 @@ export default {
             })
         }
     },
-    computed:{
-        filterTodo(){
-            for(let a = 0; this.status.length; a++){
-                return this.todoList.filter(todo=>todo.status==this.status[a].id)
-            }
-        }
-    }
-    ,
     created(){
         if(localStorage.getItem(`access_token`)){
             this.currentPage = "main-page"

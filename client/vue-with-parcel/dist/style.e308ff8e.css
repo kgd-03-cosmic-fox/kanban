@@ -50,11 +50,6 @@ div.border-solid{
     flex-wrap: wrap;
 }
 
-.main-page .cards .kanbanBoard{
-    display: flex;
-    margin: 0px;
-    width: 100%;
-}
 
 .logo-login{
     margin-left: auto;
