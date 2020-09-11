@@ -3,3 +3,6 @@ dist
 .cache
 public
 publicbackup
+firebase.json
+.firebaserc
+.firebase/
