@@ -63,6 +63,7 @@ export default {
           name: this.user.name,
           email: this.user.email,
           password: this.user.password,
+          organization: this.user.organization,
         },
       })
         .then((response) => {
