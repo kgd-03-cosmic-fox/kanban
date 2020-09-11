@@ -42,7 +42,7 @@ import axios from 'axios'
       register(){
         axios({
           method:'POST',
-          url:'http://localhost:3007/register',
+          url:'https://kanban-devp.herokuapp.com/register',
           data:{
             name:this.registerUser.name,
             email:this.registerUser.email,

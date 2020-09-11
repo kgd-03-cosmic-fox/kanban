@@ -10731,7 +10731,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3007/login',
+        url: 'https://kanban-devp.herokuapp.com/login',
         data: {
           email: this.user.email,
           password: this.user.password
@@ -10967,7 +10967,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3007/register',
+        url: 'https://kanban-devp.herokuapp.com/register',
         data: {
           name: this.registerUser.name,
           email: this.registerUser.email,
@@ -11258,7 +11258,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'Post',
-        url: 'http://localhost:3007/',
+        url: 'https://kanban-devp.herokuapp.com/',
         data: {
           title: this.task.title,
           description: this.task.description,
@@ -11781,7 +11781,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'Delete',
-        url: "http://localhost:3007/".concat(id),
+        url: "https://kanban-devp.herokuapp.com/".concat(id),
         headers: {
           token: localStorage.getItem('access_token')
         }
@@ -11800,7 +11800,7 @@ var _default = {
       console.log("'".concat(cat, "'"));
       (0, _axios.default)({
         method: 'Patch',
-        url: "http://localhost:3007/".concat(id),
+        url: "https://kanban-devp.herokuapp.com/".concat(id),
         data: {
           category: cat
         },
@@ -11823,7 +11823,7 @@ var _default = {
       console.log(id);
       (0, _axios.default)({
         method: 'Patch',
-        url: "http://localhost:3007/".concat(id),
+        url: "https://kanban-devp.herokuapp.com/".concat(id),
         data: {
           category: cat
         },
@@ -12500,7 +12500,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'Get',
-        url: 'http://localhost:3007/',
+        url: 'https://kanban-devp.herokuapp.com/',
         headers: {
           token: localStorage.getItem('access_token')
         }

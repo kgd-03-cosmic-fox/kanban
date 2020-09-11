@@ -55,7 +55,7 @@
       saveTask(){
         axios({
           method:'Post',
-          url:'http://localhost:3007/',
+          url:'https://kanban-devp.herokuapp.com/',
           data:{
             title:this.task.title,
             description:this.task.description,

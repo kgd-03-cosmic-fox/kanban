@@ -22,7 +22,7 @@
       hapusTask(id){
         axios({
           method:'Delete',
-          url:`http://localhost:3007/${id}`,
+          url:`https://kanban-devp.herokuapp.com/${id}`,
           headers:{
             token:localStorage.getItem('access_token')
           }
@@ -40,7 +40,7 @@
         console.log(`'${cat}'`)
         axios({
           method:'Patch',
-          url:`http://localhost:3007/${id}`,
+          url:`https://kanban-devp.herokuapp.com/${id}`,
           data:{
             category: cat
           },
@@ -62,7 +62,7 @@
         console.log(id)
         axios({
           method:'Patch',
-          url:`http://localhost:3007/${id}`,
+          url:`https://kanban-devp.herokuapp.com/${id}`,
           data:{
             category: cat
           },

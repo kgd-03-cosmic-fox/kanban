@@ -43,7 +43,7 @@
       login(){
         axios({
           method:'POST',
-          url:'http://localhost:3007/login',
+          url:'https://kanban-devp.herokuapp.com/login',
           data:{
             email:this.user.email,
             password:this.user.password
