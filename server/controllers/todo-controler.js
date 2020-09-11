@@ -6,7 +6,7 @@ class TodoController{
             title: req.body.title,
             description: req.body.description,
             due_date: req.body.due_date,
-            status: 3,
+            status: 0,
             OrganizationId: req.loggedInUser.organization_id
         }
         Task.create(newTodo)
@@ -53,11 +53,45 @@ class TodoController{
             }
         })
         .then((data)=>{
+            console.log(data)
             if(data){
                 Task.update({
-                    status: req.body
+                    status: req.body.status,
+
+                },{
+                    where:{
+                        id: req.params.id
+                    }
+                })
+                .then(_=>{
+                    res.status(200).json({
+                        message:"Status berhasil di perbaharui"
+                    })
                 })
             }
+        })
+        .catch(err=>{
+            res.status(500).json({
+                message:"Internal Server Error",
+                err
+            })
+        })
+    }
+    static deleteTodoById(req,res){
+        Task.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        .then(_=>{
+            res.status(200).json({
+                message:"Todo Berhasil dihapus"
+            })
+        })
+        .catch(_=>{
+            res.status(500).json({
+                message:"Internal server error"
+            })
         })
     }
 }

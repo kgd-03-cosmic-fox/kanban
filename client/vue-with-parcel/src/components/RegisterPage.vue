@@ -9,7 +9,7 @@
             </select><br>
         <button class="btn btn-primary">Register</button>
         </form><br>
-        <button @click= "changePage" class="btn btn-secondary">Cancel</button>
+        <button class="btn btn-secondary">Cancel</button>
     </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
         }
     },
     // props:['organizations'],
-    method:{
+    methods:{
         register(){
             axios({
                 method:"POST",
@@ -79,10 +79,6 @@ export default {
             .catch(err=>{
                 console.log(err)
             })
-        },
-        changePage(){
-            console.log("aku terpanggil")
-            this.$emit('changePage','login-page')
         }
     }
 }

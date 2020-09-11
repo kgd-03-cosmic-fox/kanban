@@ -32,8 +32,10 @@
                 v-for="status in status" 
                 :key="status.id" 
                 :status="status" 
-                :todo="todoList" 
-                class="col col-xl-2 border border-primary m-2 p-3 kanbanBoard"
+                :todo="todoList"
+                :colors="colors" 
+                class="col col-xl-2 border border-primary m-2 p-3 kanbanBoard" 
+                @fetchData="fetchData"
                 >
                 </KanbanBoard>
             </div>
@@ -86,7 +88,8 @@ export default {
                     id: 3,
                     name: "Completed"
                 }
-            ]
+            ],
+            colors:["primary","warning","danger","success"]
         }
     },
     methods:{
@@ -113,25 +116,6 @@ export default {
             })
             .catch(err=>{
                 console.log(err)
-            })
-        },
-        processTodo(id,statusId){
-            console.log(`${id} ${statusId}`)
-            axios({
-                method:"PATCH",
-                url:`http://localhost:3000/todo/${id}`,
-                data:{
-                    
-                },
-                headers:{
-                    access_token: localStorage.getItem(`access_token`)
-                }
-            })
-            .then(data=>{
-
-            })
-            .catch(err=>{
-
             })
         },
         fetchData(){
@@ -172,18 +156,21 @@ export default {
             .catch(err=>{
                 console.log(err)
             })
-        }
-    },
-    created(){
-        if(localStorage.getItem(`access_token`)){
+        },
+        refreshPage(){
+            if(localStorage.getItem(`access_token`)){
             this.currentPage = "main-page"
             this.fetchData()
             this.fetchAllOrganization()
+            }
+            else{
+                this.currentPage = "login-page"
+                this.fetchAllOrganization()
+            }
         }
-        else{
-            this.currentPage = "login-page"
-            this.fetchAllOrganization()
-        }
+    },
+    created(){
+       this.refreshPage()
     }
 }
 </script>

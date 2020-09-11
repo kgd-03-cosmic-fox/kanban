@@ -11190,7 +11190,7 @@ var _default = {
     };
   },
   // props:['organizations'],
-  method: {
+  methods: {
     register: function register() {
       var _this = this;
 
@@ -11208,10 +11208,6 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
-    },
-    changePage: function changePage() {
-      console.log("aku terpanggil");
-      this.$emit('changePage', 'login-page');
     }
   }
 };
@@ -11351,11 +11347,7 @@ exports.default = _default;
     ),
     _c("br"),
     _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn btn-secondary", on: { click: _vm.changePage } },
-      [_vm._v("Cancel")]
-    )
+    _c("button", { staticClass: "btn btn-secondary" }, [_vm._v("Cancel")])
   ])
 }
 var staticRenderFns = []
@@ -11408,9 +11400,43 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   name: "KanbanCard",
-  props: ["todo", "status", "elem"]
+  props: ["todo", "status", "elem"],
+  methods: {
+    processTodo: function processTodo(id, statusId) {
+      var _this = this;
+
+      axios({
+        method: "PATCH",
+        url: "http://localhost:3000/todo/".concat(id),
+        data: {
+          status: statusId
+        },
+        headers: {
+          access_token: localStorage.getItem("access_token")
+        }
+      }).then(function (data) {
+        _this.$emit('fetchData');
+      }).catch(function (err) {});
+    },
+    deleteTodo: function deleteTodo(id) {
+      var _this2 = this;
+
+      axios({
+        method: "DELETE",
+        url: "http://localhost:3000/todo/".concat(id),
+        headers: {
+          access_token: localStorage.getItem("access_token")
+        }
+      }).then(function (_) {
+        _this2.$emit("fetchData");
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }
 };
 exports.default = _default;
         var $695c04 = exports.default || module.exports;
@@ -11457,7 +11483,7 @@ exports.default = _default;
       ? _c(
           "button",
           {
-            staticClass: "btn btn-danger",
+            staticClass: "btn btn-warning",
             on: {
               click: function($event) {
                 return _vm.processTodo(_vm.elem.id, _vm.status.id - 1)
@@ -11467,6 +11493,21 @@ exports.default = _default;
           [_vm._v("Return")]
         )
       : _vm._e(),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-danger",
+        on: {
+          click: function($event) {
+            return _vm.deleteTodo(_vm.elem.id)
+          }
+        }
+      },
+      [_vm._v("Delete")]
+    ),
     _c("br"),
     _c("br")
   ])
@@ -11528,12 +11569,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var _default = {
   name: "KanbanBoard",
   components: {
     KanbanCard: _KanbanCard.default
   },
-  props: ["todo", "status"],
+  props: ["todo", "status", "colors"],
   computed: {
     filterTodo: function filterTodo() {
       var _this = this;
@@ -11542,6 +11585,11 @@ var _default = {
       return this.todo.filter(function (todo) {
         return todo.status == _this.status.id;
       }); // }
+    }
+  },
+  methods: {
+    fetchData: function fetchData() {
+      this.$emit('fetchData');
     }
   }
 };
@@ -11560,14 +11608,15 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col col-xl-2 border border-primary m-2 p-3" },
+    { staticClass: "col col-xl-2 border border- m-2 p-3" },
     [
       _c("h1", [_vm._v(_vm._s(_vm.status.name))]),
       _vm._v(" "),
       _vm._l(_vm.filterTodo, function(elem) {
         return _c("KanbanCard", {
           key: elem.id,
-          attrs: { elem: elem, todo: _vm.todo, status: _vm.status }
+          attrs: { elem: elem, todo: _vm.todo, status: _vm.status },
+          on: { fetchData: _vm.fetchData }
         })
       })
     ],
@@ -11670,6 +11719,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var _default = {
   name: "App",
   components: {
@@ -11706,7 +11757,8 @@ var _default = {
       }, {
         id: 3,
         name: "Completed"
-      }]
+      }],
+      colors: ["primary", "warning", "danger", "success"]
     };
   },
   methods: {
@@ -11732,17 +11784,6 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
-    },
-    processTodo: function processTodo(id, statusId) {
-      console.log("".concat(id, " ").concat(statusId));
-      (0, _axios.default)({
-        method: "PATCH",
-        url: "http://localhost:3000/todo/".concat(id),
-        data: {},
-        headers: {
-          access_token: localStorage.getItem("access_token")
-        }
-      }).then(function (data) {}).catch(function (err) {});
     },
     fetchData: function fetchData() {
       var _this2 = this;
@@ -11777,17 +11818,20 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
+    },
+    refreshPage: function refreshPage() {
+      if (localStorage.getItem("access_token")) {
+        this.currentPage = "main-page";
+        this.fetchData();
+        this.fetchAllOrganization();
+      } else {
+        this.currentPage = "login-page";
+        this.fetchAllOrganization();
+      }
     }
   },
   created: function created() {
-    if (localStorage.getItem("access_token")) {
-      this.currentPage = "main-page";
-      this.fetchData();
-      this.fetchAllOrganization();
-    } else {
-      this.currentPage = "login-page";
-      this.fetchAllOrganization();
-    }
+    this.refreshPage();
   }
 };
 exports.default = _default;
@@ -11949,7 +11993,12 @@ exports.default = _default;
                       key: status.id,
                       staticClass:
                         "col col-xl-2 border border-primary m-2 p-3 kanbanBoard",
-                      attrs: { status: status, todo: _vm.todoList }
+                      attrs: {
+                        status: status,
+                        todo: _vm.todoList,
+                        colors: _vm.colors
+                      },
+                      on: { fetchData: _vm.fetchData }
                     })
                   })
                 ],
