@@ -38,7 +38,7 @@ export default {
          login(){
             axios({
                 method:"POST",
-                url:`http://localhost:3000/login`,
+                url:`https://caneband-apps.herokuapp.com//login`,
                 data:{
                     email: this.user.email,
                     password: this.user.password,

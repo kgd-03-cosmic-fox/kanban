@@ -17,7 +17,7 @@ export default {
           processTodo(id,statusId){
             axios({
                 method:"PATCH",
-                url:`http://localhost:3000/todo/${id}`,
+                url:`https://caneband-apps.herokuapp.com//todo/${id}`,
                 data:{
                     status: statusId
                 },
@@ -35,7 +35,7 @@ export default {
         deleteTodo(id){
           axios({
             method:"DELETE",
-            url:`http://localhost:3000/todo/${id}`,
+            url:`https://caneband-apps.herokuapp.com//todo/${id}`,
             headers:{
               access_token:localStorage.getItem("access_token")
             }

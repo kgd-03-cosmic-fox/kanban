@@ -57,7 +57,7 @@ export default {
     },
     data (){
         return {
-            baseUrl:"http://localhost:3000",
+            baseUrl:"https://caneband-apps.herokuapp.com/",
             currentPage: "",
             user:{
                 name: "",
