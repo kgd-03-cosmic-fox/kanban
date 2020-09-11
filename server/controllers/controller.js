@@ -1,8 +1,6 @@
 const {User} = require(`../models/index`)
 const jwt = require(`jsonwebtoken`)
 const bcrypt = require(`bcryptjs`)
-require('dotenv').config()
-
 
 class Controller{
     static postRegister(req,res){
