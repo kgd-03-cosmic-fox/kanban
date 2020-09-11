@@ -43,7 +43,7 @@ export default {
 
             axios({
                 method : 'post',
-                url : 'http://localhost:3000/login',
+                url : 'https://kanbanapps.herokuapp.com/login',
                 data :{
                     email : this.login.email,
                     password : this.login.password

@@ -52,7 +52,7 @@ export default {
          postNewTask(){
           axios({
               method : 'post',
-              url : `http://localhost:3000/tasks/${this.idOrg}`,
+              url : `https://kanbanapps.herokuapp.com/tasks/${this.idOrg}`,
               data :{
                   taskname : this.addTask.taskname, 
                   description : this.addTask.description,

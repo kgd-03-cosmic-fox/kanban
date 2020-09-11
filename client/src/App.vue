@@ -78,7 +78,7 @@ export default {
             console.log(idorganizations)
             axios({
                 method: 'get',
-                url: `http://localhost:3000/tasks/${idorganizations}`,
+                url: `https://kanbanapps.herokuapp.com/tasks/${idorganizations}`,
                 headers :{
                     token : localStorage.getItem('token')
                 }
@@ -95,7 +95,7 @@ export default {
 
             axios({
                 method: 'get',
-                url : 'http://localhost:3000/organizations',
+                url : 'https://kanbanapps.herokuapp.com/organizations',
                 headers:{
                     token : localStorage.getItem('token')
                 }
@@ -121,7 +121,7 @@ export default {
 
             axios({
                 method: 'get',
-                url : 'http://localhost:3000/stats',
+                url : 'https://kanbanapps.herokuapp.com/stats',
                 headers : {
                     token : localStorage.getItem('token')
                 }

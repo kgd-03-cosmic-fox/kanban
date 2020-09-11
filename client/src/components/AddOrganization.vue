@@ -39,7 +39,7 @@ export default {
             axios({
 
                 method:'post',
-                url:`http://localhost:3000/organizations/create`,
+                url:`https://kanbanapps.herokuapp.com/organizations/create`,
                 data:{
                     org_name : this.organizationsName
                 },

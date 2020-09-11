@@ -40,7 +40,7 @@ export default {
             console.log(id , statId)
             axios({
                 method: 'patch',
-                url:`http://localhost:3000/tasks/${id}`,
+                url:`https://kanbanapps.herokuapp.com/tasks/${id}`,
                 data:{
                     StatId : statId
                 },
@@ -62,7 +62,7 @@ export default {
 
             axios({
                 method:'delete',
-                url:`http://localhost:3000/tasks/${id}`,
+                url:`https://kanbanapps.herokuapp.com/tasks/${id}`,
                 headers:{
                     token : localStorage.getItem('token')
                 }
