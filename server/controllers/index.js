@@ -21,7 +21,7 @@ class Controller{
       }
       else{
         if(bcrypt.compareSync(req.body.password,user.password)){
-          const access_token = jwt.sign({id:user.id,email:user.email,organisationId:user.OrganisationId},process.env.SECRET_KEY)
+          const access_token = jwt.sign({id:user.id,name:user.name,email:user.email,organisationId:user.OrganisationId},process.env.SECRET_KEY)
           return res.status(202).json({access_token})
         }
         else{
@@ -52,19 +52,6 @@ class Controller{
     })
     .catch(err =>{
       res.json(err)
-    })
-  }
-  static getTask(req,res){
-    Task.findAll({
-      where:{
-        OrganisationId:req.loggedInUser.organisationId
-      }
-    })
-    .then(data =>{
-      res.status(200).json(data)
-    })
-    .catch(err =>{
-      res.send(err)
     })
   }
   static postTask(req,res){
@@ -117,10 +104,7 @@ class Controller{
   }
   static putTask(req,res){
     Task.update({
-      title:req.body.title,
-      description:req.body.description,
-      category: req.body.category,
-      due_date: req.body.due_date
+      category: req.body.category
     },{
         where:{
           id:req.params.id
@@ -153,6 +137,8 @@ class Controller{
           description:el.description,
           category:el.category,
           due_date:`${new Date(el.due_date).getDate()}-${new Date(el.due_date).getMonth()}-${new Date(el.due_date).getFullYear()}`,
+          added_by:req.loggedInUser.email,
+          updatedAt:`${new Date(el.updatedAt).getDate()}-${new Date(el.updatedAt).getMonth()}-${new Date(el.updatedAt).getFullYear()}`,
           Organisation: el.Organisation.name
         }
         myData.push(dummyObj)

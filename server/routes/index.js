@@ -11,6 +11,6 @@ router.get('/',Controller.getTask)
 router.post('/',Controller.postTask)
 router.get('/:id',authorization,Controller.getTaskById)
 router.delete('/:id', authorization,Controller.deleteTask)
-router.put('/:id', authorization,Controller.putTask)
+router.patch('/:id', authorization,Controller.putTask)
 
 module.exports = router
