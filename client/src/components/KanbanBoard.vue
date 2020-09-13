@@ -9,6 +9,7 @@
         v-bind:taskDesc="task.description"
         v-bind:taskStatus="task.status"
         v-bind:taskId="task.id"
+        v-bind:owner="task.User.name"
         @refreshPage="changePage"
       ></KanbanCard>
     </div>

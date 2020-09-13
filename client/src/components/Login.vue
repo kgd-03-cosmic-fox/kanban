@@ -49,7 +49,7 @@ export default {
       })
         .then(({ data }) => {
           localStorage.setItem("access_token", data.access_token);
-          this.$emit("changeDisplay", "dashboard");
+          this.$emit("loginSuccess", "dashboard");
         })
         .catch((err) => {
           console.log(err);

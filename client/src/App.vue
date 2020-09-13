@@ -2,7 +2,7 @@
   <div>
     <Navbar v-if="display !== 'login' && display !== 'register'" @changePage="changeDisplay"></Navbar>
 
-    <Login v-if="display === 'login'" @changeDisplay="changeDisplay"></Login>
+    <Login v-if="display === 'login'" @loginSuccess="checkAuth" @changeDisplay="changeDisplay"></Login>
     <Register v-else-if="display === 'register'" @changePage="changeDisplay"></Register>
     <MainBoard v-else-if="display === 'dashboard'" v-bind:tasks="tasks" @changePage="checkAuth"></MainBoard>
     <AddTask v-else-if="display === 'addTask'" @back="checkAuth"></AddTask>

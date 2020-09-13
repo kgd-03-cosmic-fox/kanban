@@ -5,6 +5,7 @@
       <button class="btn btn-outline-danger my-2 my-sm-0" @click="deleteTask()">Del</button>
     </h6>
     <p>{{taskDesc}}</p>
+    <p>Task Owner: {{owner}}</p>
     <div class="prog-button-container row justify-content-around">
       <input
         type="button"
@@ -28,7 +29,7 @@
 import axiosKanbanApi from "../api/kanbanAPI.js";
 export default {
   name: "KanbanCard",
-  props: ["taskTitle", "taskDesc", "taskStatus", "taskId"],
+  props: ["taskTitle", "taskDesc", "taskStatus", "taskId", "owner"],
   methods: {
     deleteTask() {
       axiosKanbanApi({
