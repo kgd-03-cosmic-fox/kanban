@@ -57,6 +57,9 @@ class TodoController{
                         message:"Status berhasil di perbaharui"
                     })
                 })
+                .catch(err=>{
+                    next(err)
+                })
             }
         })
         .catch(err=>{
