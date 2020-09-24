@@ -5,4 +5,4 @@ import App from './App.vue'
 
 new Vue ({
     render: createElement=> createElement(App),//>>> App.vue
-}).$mount('#app');//Mount artinya kan nanti bakal dimasukin ke div
+}).$mount('#app');//Mount artinya nanti isian vue bakal dimasukin ke div

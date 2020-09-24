@@ -71,7 +71,25 @@ div.border-solid{
     background-color: #B46C5D;
 }
 
-/* table */
+#register-page{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+    height: 100vh;
+    padding-left: 75px; 
+}
 
 
 
+.navbar .navbar-left {
+    display: flex;
+    width: 100%;
+}
+
+.navbar .navbar-right {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-items: flex-end;
+}

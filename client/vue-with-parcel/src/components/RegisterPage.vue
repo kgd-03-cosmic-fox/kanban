@@ -1,20 +1,28 @@
 <template>
-      <div>
-        <form @submit.prevent= "register">
-            <input v-model="newUser.name" type="text" placeholder="name"><br>
-            <input v-model="newUser.email" type="text" placeholder="email"><br>
-            <input v-model="newUser.password" type="password" placeholder="password"><br>
-            <select v-model="newUser.OrganizationId">
-                <option v-for="item in organizations" :key="item.id" :value=item.id >{{item.name}}</option>
-            </select><br>
-        <button class="btn btn-primary">Register</button>
-        </form><br>
-        <button class="btn btn-secondary">Cancel</button>
+      <div id="register-box">
+          <div id="register-form">
+            <h1>Register</h1><br>
+            <div class="form-group">
+                <form @submit.prevent= "register">
+                    <input v-model="newUser.name" type="text" placeholder="name"><br><br>
+                    <input v-model="newUser.email" type="text" placeholder="email"><br><br>
+                    <input v-model="newUser.password" type="password" placeholder="password"><br><br>
+                    <select v-model="newUser.OrganizationId">
+                        <option v-for="item in organizations" :key="item.id" :value=item.id >{{item.name}}</option>
+                    </select><br><br>
+                <button class="btn btn-primary">Register</button>
+                </form><br>
+                <button @click="cancelButton" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+          <div id="register-background" class="d-flex flex-row bd-highlight mb-3">
+              <img class="p-2 bd-highlight" src="../assets/img/greetings.jpg" alt="" style="width:100%">
+          </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
+import kanbanApi from '../api/kanbanApi'
       
 export default {
     name: "RegisterPage",
@@ -60,12 +68,11 @@ export default {
     ]
         }
     },
-    // props:['organizations'],
     methods:{
         register(){
-            axios({
+            kanbanApi({
                 method:"POST",
-                url:`https://caneband-apps.herokuapp.com/register`,
+                url:`/register`,
                 data:{
                     name: this.newUser.name,
                     email: this.newUser.email,
@@ -79,6 +86,9 @@ export default {
             .catch(err=>{
                 console.log(err)
             })
+        },
+        cancelButton () {
+             this.$emit('changePage','login-page')
         }
     }
 }

@@ -10,14 +10,15 @@
 </template>
 
 <script>
+import kanbanApi from '../api/kanbanApi'
 export default {
     name:"KanbanCard",
     props: ["todo","status", "elem"],
     methods:{
           processTodo(id,statusId){
-            axios({
+            kanbanApi({
                 method:"PATCH",
-                url:`https://caneband-apps.herokuapp.com//todo/${id}`,
+                url:`/todo/${id}`,
                 data:{
                     status: statusId
                 },
@@ -33,9 +34,9 @@ export default {
             })
         },
         deleteTodo(id){
-          axios({
+          kanbanApi({
             method:"DELETE",
-            url:`https://caneband-apps.herokuapp.com//todo/${id}`,
+            url:`/todo/${id}`,
             headers:{
               access_token:localStorage.getItem("access_token")
             }

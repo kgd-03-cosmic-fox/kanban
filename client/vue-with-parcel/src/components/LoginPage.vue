@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import kanbanApi from '../api/kanbanApi'
+
 export default {
     name: "LoginPage",
     data (){
@@ -36,9 +38,9 @@ export default {
     },
     methods:{
          login(){
-            axios({
+            kanbanApi({
                 method:"POST",
-                url:`https://caneband-apps.herokuapp.com//login`,
+                url:`/login`,
                 data:{
                     email: this.user.email,
                     password: this.user.password,
@@ -50,8 +52,9 @@ export default {
                     `access_token`,
                     response.data.token
                     )
+                localStorage.setItem("loggedInUser",response.data.payload)
                     this.$emit('changePage',"main-page")
-                    this.$emit('fetchData')
+                    this.$emit('fetchData')        
            })
             .catch(err=>{
                 console.log(err)

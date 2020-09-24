@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     status: DataTypes.INTEGER,
     due_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       validate:{
         isAfter: {
           args: new Date(Date.now()).toLocaleDateString(),

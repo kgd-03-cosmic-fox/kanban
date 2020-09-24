@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       due_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       OrganizationId: {
         type: Sequelize.INTEGER,
