@@ -13,22 +13,22 @@ function TaskAuthorizationUpdateDelete (req, res , next){
             
             idOrg = data.OrgId
 
-            return OrgMember.findAll({
+            return OrgMember.findOne({
                 where : {
-                    UserId : req.isLoggedIn.id
+                    UserId : req.isLoggedIn.id,
+                    OrgId: idOrg
                 }
             })
             .then(data=>{
 
-                console.log(data)
-                data.forEach(el=>{
-                    if(el.OrgId === idOrg){
-                        next()
-                    }
-                })
-
+                if(data) {
+                    next()
+                } else {
+                    next({status : 401 , message:'Not Authorize'})
+                }
+ 
             })
-            .catch(next)
+
         }
         else{
             next({status : 400 , message:'Task Not Found'})
