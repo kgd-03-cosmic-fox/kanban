@@ -8,6 +8,7 @@ class Controller{
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
+            isAdmin:false,
             OrganizationId: req.body.organization_name //Body input tulisannya name tapi valuenya dalam bentuk "id"
         }
         User.create(newUser)
@@ -47,7 +48,8 @@ class Controller{
                     const payload = {
                         name: data.name,
                         email:data.email,
-                        organization_id:data.OrganizationId
+                        organization_id:data.OrganizationId,
+                        isAdmin: data.isAdmin
                     }
                     res.status(202).json({
                         token: jwt.sign(payload,process.env.JWT_SECRET_KEY),

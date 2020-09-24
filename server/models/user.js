@@ -48,6 +48,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    isAdmin:{
+      type: DataTypes.BOOLEAN,
+      allowNull:false
+    },
     OrganizationId: {
       type: DataTypes.INTEGER,
       allowNull:false,

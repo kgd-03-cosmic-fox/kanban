@@ -40,5 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Task',
   });
+
+
   return Task;
 };

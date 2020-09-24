@@ -1,4 +1,7 @@
 'use strict';
+
+const { sequelize } = require("../models");
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Users', {
@@ -20,6 +23,10 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull:false
+      },
+      isAdmin:{
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       OrganizationId: {
         type: Sequelize.INTEGER,

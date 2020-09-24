@@ -1,7 +1,7 @@
 const {Task,Organization} = require(`../models/index`)
 
 class TodoController{
-    static postNewTodoByByOrganizationName(req,res){
+    static postNewTodoByByOrganizationName(req,res,next){
         let newTodo ={
             title: req.body.title,
             description: req.body.description,
@@ -16,18 +16,10 @@ class TodoController{
             })
         })
         .catch((err)=>{
-            if(err.errors[0].type === "Validation error" ){
-                res.status(400).json({
-                    message: err.errors[0].message
-                })
-            }else{
-            res.status(500).json({
-                message:"Internal server error"
-            })
-            }
+            next(err)
         })
     }
-    static getAllTodoByOrganizationName(req,res){
+    static getAllTodoByOrganizationName(req,res,next){
         Task.findAll({
             where:{
                 OrganizationId: req.loggedInUser.organization_id
@@ -40,20 +32,17 @@ class TodoController{
                 payload: req.loggedInUser            
             })
         })
-        .catch(_=>{
-            res.status(500).json({
-                message:"Internal server error"
-            })
+        .catch(err=>{
+            next(err)
         })
     }
-    static patchTodoStatus(req,res){
+    static patchTodoStatus(req,res,next){
         Task.findOne({
             where:{
                 id:req.params.id
             }
         })
         .then((data)=>{
-            console.log(data)
             if(data){
                 Task.update({
                     status: req.body.status,
@@ -71,13 +60,10 @@ class TodoController{
             }
         })
         .catch(err=>{
-            res.status(500).json({
-                message:"Internal Server Error",
-                err
-            })
+            next(err)
         })
     }
-    static deleteTodoById(req,res){
+    static deleteTodoById(req,res,next){
         Task.destroy({
             where:{
                 id: req.params.id
@@ -88,10 +74,8 @@ class TodoController{
                 message:"Todo Berhasil dihapus"
             })
         })
-        .catch(_=>{
-            res.status(500).json({
-                message:"Internal server error"
-            })
+        .catch(err=>{
+            next(err)
         })
     }
 }

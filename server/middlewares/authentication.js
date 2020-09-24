@@ -2,7 +2,6 @@ const jwt = require(`jsonwebtoken`)
 const {User} = require(`../models/index`)
 
 function authentication(req,res,next){
-    console.log(req.headers.access_token)
     if(!req.headers.access_token){
         res.status(401).json({
             message:"Failed to Authenticate"

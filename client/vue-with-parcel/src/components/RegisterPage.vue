@@ -65,7 +65,7 @@ export default {
         register(){
             axios({
                 method:"POST",
-                url:`http://localhost:3000/register`,
+                url:`https://caneband-apps.herokuapp.com/register`,
                 data:{
                     name: this.newUser.name,
                     email: this.newUser.email,
