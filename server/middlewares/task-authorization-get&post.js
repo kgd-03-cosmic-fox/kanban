@@ -2,35 +2,21 @@ const {User , OrgMember , Org} = require('../models')
 
 function TaskAuthorization (req , res , next) {
 
-    console.log(req.params)
-
-    User.findOne({
+    OrgMember.findOne({
         where: {
-            id : req.isLoggedIn.id
-        },
-        include : Org
-    })
-    .then(data=>{
-       
-        checkOrg = false
-
-        data.Orgs.forEach(el=>{
-
-            if(req.params.idOrg == el.id){
-                checkOrg = true
-            }
-
-        })
-
-        if(checkOrg){
-            next()
-        }else{
-            next({status:404 , message : 'Not Authorize!!!'})
+            UserId: req.isLoggedIn.id,
+            OrgId: req.param.idOrg
         }
-        
     })
-    .catch(next)
-
+        .then(data => {
+            if(data){
+                next()
+            } else {
+                next({status:404 , message : 'Not Authorize!!!'})
+            }
+        })
+        .catch(next)
+        
 }
 
 module.exports = TaskAuthorization
