@@ -1,7 +1,7 @@
 <template>
-  <div class="card" style="width: 18rem;">
+  <div class="card my-3" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">{{task.title}}</h5>
+      <strong><h4 class="card-title">{{task.title}}</h4></strong>
       <h6 class="card-subtitle mb-2 text-muted">{{task.description}}</h6>
       <h6 class="card-subtitle mb-2 text-muted">Added By :{{task.added_by}}</h6>
       <h6 class="card-subtitle mb-2 text-muted">Updated At :{{task.updatedAt}}</h6>

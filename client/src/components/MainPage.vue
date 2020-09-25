@@ -1,13 +1,14 @@
 <template>
   <div id="home-page" >
-    <Navbar></Navbar>
-    <div class="container-fluid border border-dark">
+    <Navbar
+    @checkAuth="loadHome"
+    ></Navbar>
+    <div class="container-fluid border">
       <div class="row">
-        <div class="col-3 d-flex align-items-start flex-column bd-highlight bg-primary">
-          <div class="p-2 bd-highlight w-100"><button><a href="#" @click="showAdd">Add Task</a></button></div>
-          <div class="p-2 bd-highlight w-100"><button><a href="#" @click="logout">Logout</a></button></div>
-        </div>
-        <div class="col-9" id="cntr-1">
+        <div class="p-2 bd-highlight w-100"><button type="button" class="btn btn-primary" @click="showAdd">Add Task</button></div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="cntr-1">
           <div class="row">
             <KanbanBoard
             @loadHome = "loadHome"
@@ -16,8 +17,6 @@
               :categoryTitle = "category"
               :tasks="tasks"
               :key="category"
-              @loadHome1="loadHome1"
-              @loadHome2="loadHome2"
             ></KanbanBoard>
           </div>
         </div>
@@ -36,10 +35,6 @@ import KanbanBoard from './KanbanBoard'
       KanbanBoard
     },
     methods:{
-      logout(){
-        localStorage.removeItem("access_token")
-        this.$emit("checkAuth")
-      },
       showAdd(){
         this.$emit("showAddForm")
       },

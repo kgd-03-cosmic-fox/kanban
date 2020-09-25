@@ -1,8 +1,8 @@
 <template>
-  <div class="col-3">
-    <div class="center">{{ categoryTitle }}</div>
+  <div class="col-3 my-2">
+    <div class="center bg-secondary">{{ categoryTitle }}</div>
     <div class="row">
-      <div class="col-3 border border-dark">
+      <div class="col-3 mx-4 my-3 mb-2">
         <KanbanCard
           v-for="task in filterTask"
           :categories="categories"

@@ -1,43 +1,43 @@
 <template>
   <div id="test-add">
-    <form>
-      <h3>Add New Todo</h3>
-      <table>
-        <tr>
-          <td><label for="title">Title</label></td>
-          <td><input type="text" v-model="task.title" placeholder="Title"></td>
-        </tr>
-        <tr>
-          <td><label for="description">description</label></td>
-          <td><input  type="text" v-model="task.description" placeholder="Description"></td>
-        </tr>
-        <tr>
-          <td><label for="category">Category</label></td>
-          <td>
-          <select v-model="task.category">
+    <Navbar></Navbar>
+    <div class="container-fluid">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Title</label>
+          <input type="text" v-model="task.title" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Description</label>
+          <input v-model="task.description" type="text" class="form-control" id="description">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Category</label>
+          <select class="custom-select" v-model="task.category">
             <option value="Backlog">Backlog</option>
             <option value="Progress">Progress</option>
             <option value="Strugle">Strugle</option>
             <option value="Done">Done</option>
           </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Date</td>
-          <td><input type="date" v-model="task.due_date"><br></td>
-        </tr>
-        <tr>
-          <td><button @click="saveTask">Save</button></td>
-          <td><button @click="kembali">Back</button></td>
-        </tr>
-      </table>
-  </form>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Due Date</label>
+          <input v-model="task.due_date" type="date" class="form-control" id="due_date">
+        </div>
+      </form>
+      <button class="btn btn-primary" @click="saveTask">Submit</button>
+      <button class="btn btn-warning" @click="kembali">Back</button>
+    </div>
   </div>
 </template>
 <script>
+import Navbar from './Navbar'
  import axios from'axios'
   export default{
     name:'AddTask',
+    components: {
+      Navbar
+    },
     data(){
       return{
         task:{

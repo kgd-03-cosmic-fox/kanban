@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary mb-2">
-    <a class="navbar-brand font-white" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <a class="navbar-brand font-white" href="#" @click="refreshHome">Kanban</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,35 +8,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link font-white" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link font-white" href="#"> <span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link font-white" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle font-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item font-white" href="#">Action</a>
-            <a class="dropdown-item font-white" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item font-white" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled font-white" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link font-white" href="#" @click="refreshHome">Work List</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-dark my-2 my-sm-0 font-white" type="submit">Search</button>
-      </form>
+      <button type="button" class="btn btn-warning ml-2 mr-5" @click="logout">Logout</button>
     </div>
   </nav>
 </template>
 <script>
   export default{
-    name:'Navbar'
+    name:'Navbar',
+    methods: {
+      logout(){
+        localStorage.removeItem("access_token")
+        this.$emit("checkAuth")
+      },
+      refreshHome () {
+        this.$emit("checkAuth")
+      }
+    }
   }
 </script>
