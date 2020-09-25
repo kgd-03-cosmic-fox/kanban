@@ -59,20 +59,23 @@ export default {
 
         },
         deleteTask(id){
+            let isWantDelete = confirm('Are You Sure want to delete?')
 
-            axios({
-                method:'delete',
-                url:`https://kanbanapps.herokuapp.com/tasks/${id}`,
-                headers:{
-                    token : localStorage.getItem('token')
-                }
-            })
-            .then(data=>{
-                this.$emit('checkPage')
-            })
-            .catch(err=>{
-                console.log(err)
-            })
+            if(isWantDelete){
+                axios({
+                    method:'delete',
+                    url:`https://kanbanapps.herokuapp.com/tasks/${id}`,
+                    headers:{
+                        token : localStorage.getItem('token')
+                    }
+                })
+                .then(data=>{
+                    this.$emit('checkPage')
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+            }
         }
     }
 }
