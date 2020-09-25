@@ -1,26 +1,36 @@
 <template>
-  <div id="test-register">
+  <div class="container-fluid">
+    <h1 class="display-5">Register</h1>
     <form>
-      <h3>Register</h3>
-      <label for="name">Name: </label>
-      <input v-model="registerUser.name" type="text" placeholder="Name"><br>
-      <label for="email">Email: </label>
-      <input v-model="registerUser.email" type="text" placeholder="Email"><br>
-      <label for="Job Desk">Password: </label>
-      <input v-model="registerUser.password" type="password" placeholder="Password"><br>
-      <label for="password">Job Desk : </label>
-      <input v-model="registerUser.jobDesk" type="text" placeholder="JobDesk"><br>
-      <label for="organisation">Organisation: </label>
-      <select v-model="registerUser.OrganisationId">
-        <option value="1">Hacktiv8</option>
-        <option value="2">Dicoding</option>
-        <option value="3">Arkademy</option>
-        <option value="4">T-schools</option>
-        <option value="5">T-access</option>
-      </select>
-      <br>
-  </form>
-  <button class="btn btn-secondary" @click="register">Register</button><br>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" v-model="registerUser.name" class="form-control" id="register-name" aria-describedby="emailHelp" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" v-model="registerUser.email" class="form-control" id="register-email" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" v-model="registerUser.password" class="form-control" id="register-password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="jobDesk">JobDesk</label>
+        <input type="text" v-model="registerUser.jobDesk" class="form-control" id="register-jobDesk" placeholder="JobDesk">
+      </div>
+      <div class="form-group">
+        <label for="organisation">Organisation</label>
+        <select class="custom-select" v-model="registerUser.OrganisationId">
+          <option value="1">Hacktiv8</option>
+          <option value="2">Dicoding</option>
+          <option value="3">Arkademy</option>
+          <option value="4">T-schools</option>
+          <option value="5">T-access</option>
+        </select>
+      </div>
+    </form>
+    <button type="submit" class="btn btn-primary" @click="register">Register</button>
   </div>
 </template>
 <script>
