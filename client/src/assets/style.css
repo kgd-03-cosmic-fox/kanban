@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html , body {
+    height: 100%;
+}
+
+body {
+    color: white;
+    background-image: url('./img/kanban.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#content-bar{
+
+    width: 100%;
+    display: flex;
+}
+
+.items{
+
+    background-color: rgba(0,0,0,60%);
+    margin: 5px auto;
+    width: 75%;
+    text-align: center;
+}
+
+
+.flex-column-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.box-card {
+
+    margin: 5px;
+    overflow: scroll;
+    min-height: 210px;
+    max-height: 1000px;
+    min-width: 310px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scrollbar-width: none;
+    background-color: rgba(255,255,255,60%);
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.box {
+    background-color: whitesmoke;
+    margin: 5px 
+}
+
+.card {
+
+    background-color: rgba(0,0,0,90%);
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    width: 300px;
+    height: 200px;
+    max-height: 200px;
+    
+}
+
+.data-list{
+
+    overflow: scroll;
+    scrollbar-width: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#task-list-page , #add-task-page{
+    width: 100%;
+
+}
+
+#login-page , #register-page{
+    
+    height: 100%;
+    text-align: center;
+}
+
+#login-page table , #register-page table {
+    margin: 0 auto;
+}
+
+#submit-register{
+    display: inline-block;
+}
+
+#submit-login , #submit-register , #submit-back-to-login , #login-register , #back-to-home-from-add-task , #post-add-task{
+
+    margin-top: 25px;
+    border-radius: 12px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px 16px;
+    background-color: black;
+    border: none;
+    color: white;
+    margin: 40px auto;
+    text-align: center;
+    
+}
+ input[name=organizations_name]{
+
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/org.png');
+    background-position: 10px 10px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+
+}
+
+#register-form  input[name=username-register]{
+
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/username.png');
+    background-position: 10px 10px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+
+}
+
+#login-form input[type=text] , #register-form  input[name=email-register] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/email.jpg');
+    background-position: 10px 10px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+}
+
+input[type=password]{
+
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/password.png');
+    background-position: 10px 10px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+
+}
+
+#add-form input[name=task_name]{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/title.png');
+    background-position: 10px 10px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+}
+
+#add-form input[name=description]{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/description.png');
+    background-position: 10px 10px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+}
+
+#login-form , #register-form{
+    
+    background-color:rgba(0,0, 0, 50%);
+    height: 500px;
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form table , #register-form table {
+    margin-top: 40px;
+}
+
+#login-box , #register-box{
+
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 15%;
+
+}
+
+#login-inner-box , #register-inner-box{
+
+    margin-top: auto;
+}
+
+.task-status-title{
+
+    background-color: rgba(0 ,0 ,0 ,75%);
+    width: 100%;
+    text-align: center ;
+    
+}
+
+#add-task{
+    height: 48px;
+}
+
+#content-page , #side-bar-page , #add-task {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.card-button {
+    
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+
+}
+
+.due {
+
+    text-align: right;
+    margin-top: auto;
+    margin-bottom: 0;
+
+}
+
+.author {
+
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 0;
+    
+}
+
+#text-logout , #go-to-add-task , #go-to-list-task{
+    margin-top: 50px;
+}
+
+#add-title{
+
+    margin-top: 30%;
+}
+
+#add-form {
+    text-align: center;
+}
+
+#add-form table {
+    margin: 50px auto;
+}
+
+input[type=date]{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./img/date.png');
+    background-position: 10px 10px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 45px;
+}
+
+#add-box{
+    height: 500px;
+    width: 500px;
+    background-color: rgba(0,0,0,50%)
+}
+
+.no-display {
+    color: rgba(0 ,0 ,0 ,0%);
+}
+
+#side-bar {
+    height: 100vh;
+    background-color: rgba(255,255,255,50%);
+}
+
+
+:hover {
+    cursor: default;
+}
+
+input:hover , #side-bar .task-status-title h4 , #side-bar .task-status-title #go-to-list-task , #side-bar .task-status-title #go-to-add-task , #side-bar .task-status-title #text-logout {
+    cursor: pointer;
+}
+
+#post-add-org{
+    margin-top: 25px;
+    border-radius: 12px;
+    width: 150px;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 15px 16px;
+    background-color: black;
+    border: none;
+    color: white;
+    margin: 40px auto;
+    text-align: center;
+}
+
+#add-org{
+    margin-top: 25px;
+    border-radius: 12px;
+    width: 200px;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 15px 16px;
+    background-color: #004a87;
+    border: none;
+    color: white;
+    margin: 40px auto;
+    text-align: center;
+}
+
+#org-bar{
+    width: 100vw;
+}
